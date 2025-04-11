@@ -314,14 +314,34 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="additional_education">Education:</label>
-                            <textarea id="additional_education" name="additional_education"></textarea>
+                            <textarea id="additional_education" name="additional_education" class="fixed-textarea"></textarea>
                         </div>
                         
                         <div class="form-group">
                             <label for="additional_occupation">Occupation:</label>
-                            <textarea id="additional_occupation" name="additional_occupation"></textarea>
+                            <textarea id="additional_occupation" name="additional_occupation" class="fixed-textarea"></textarea>
                         </div>
                     </div>
+                    
+                    <style>
+                        .fixed-textarea {
+                            resize: none; /* Disables resizing */
+                            width: 400px; /* Set a fixed width */
+                            height: 100px; /* Set a fixed height */
+                            /* Optional additional styling */
+                            padding: 8px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            font-family: inherit;
+                        }
+                        
+                        /* If you want both textareas to be the same size */
+                        #additional_education, #additional_occupation {
+                            resize: none;
+                            width: 300px;
+                            height: 100px;
+                        }
+                    </style>
                     
                     <div class="form-row">
                         <div class="form-group">
@@ -349,31 +369,79 @@
     </div>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const casteInput = document.getElementById('caste');
             const tribeSelect = document.getElementById('tribe-select');
-            
+            const form = document.getElementById('matrimonyForm');
+    
+            let editMode = false;
+            let editProfileData = null;
+    
+            // Check if edit mode is active
+            if (window.location.search.includes('edit=true')) {
+                editProfileData = JSON.parse(localStorage.getItem('editProfileData'));
+                if (editProfileData) {
+                    editMode = true;
+                    // Populate form fields
+                    for (const [key, value] of Object.entries(editProfileData)) {
+                        const field = document.querySelector(`[name="${key}"]`);
+                        if (field) field.value = value;
+                    }
+    
+                    // Enable tribe if caste is OC
+                    const casteValue = editProfileData.caste?.toLowerCase();
+                    if (casteValue === 'oc') {
+                        tribeSelect.disabled = false;
+                    }
+                }
+            }
+    
             // Enable/disable tribe select based on caste input
-            casteInput.addEventListener('input', function() {
+            casteInput.addEventListener('input', function () {
                 const casteValue = this.value.toLowerCase();
-                if (casteValue === 'oc' || casteValue === 'OC') {
+                if (casteValue === 'oc') {
                     tribeSelect.disabled = false;
                 } else {
                     tribeSelect.disabled = true;
                     tribeSelect.selectedIndex = -1;
                 }
             });
-            
-            // Form submission handler
-            document.getElementById('matrimonyForm').addEventListener('submit', function(e) {
+    
+            // FORM SUBMIT HANDLER
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
-                // Here you would typically send the form data to your backend
+    
+                const formData = new FormData(this);
+                const profileData = Object.fromEntries(formData.entries());
+    
+                let profiles = JSON.parse(localStorage.getItem('matrimonyProfiles')) || [];
+    
+                if (editMode) {
+                    // Replace the old profile using its index
+                    const index = profiles.findIndex(p => p.name === editProfileData.name && p.dob === editProfileData.dob);
+                    if (index !== -1) {
+                        profiles[index] = profileData;
+                    } else {
+                        // fallback: add as new if not found
+                        profiles.push(profileData);
+                    }
+                    localStorage.removeItem('editProfileData'); // cleanup
+                } else {
+                    profiles.push(profileData); // Add new
+                }
+    
+                localStorage.setItem('matrimonyProfiles', JSON.stringify(profiles));
+    
                 alert('Profile saved successfully!');
                 this.reset();
                 tribeSelect.disabled = true;
+    
+                // Redirect to view page
+                window.location.href = 'view-profiles.html';
             });
         });
     </script>
+    
+
 </body>
 </html>
