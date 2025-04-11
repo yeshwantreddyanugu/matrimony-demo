@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Profiles - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="home.html">Dashboard</a></li>
+                <li><a href="add-profile.html">Add Profile</a></li>
+                <li class="active"><a href="view-profiles.html">View/Edit Profiles</a></li>
+                <li><a href="enquiries.html">Manage Enquiries</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>View/Edit Profiles</h1>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search profiles...">
+                <button class="btn">Search</button>
+            </div>
+            
+            <table class="profiles-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>New York</td>
+                        <td>
+                            <button class="btn-sm btn-edit">Edit</button>
+                            <button class="btn-sm btn-delete">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- More rows would go here -->
+                </tbody>
+            </table>
+            
+            <div class="pagination">
+                <button class="btn">Previous</button>
+                <span>Page 1 of 5</span>
+                <button class="btn">Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

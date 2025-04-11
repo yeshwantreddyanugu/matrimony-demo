@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="home.html">Dashboard</a></li>
+                <li><a href="add-profile.html">Add Profile</a></li>
+                <li><a href="view-profiles.html">View/Edit Profiles</a></li>
+                <li><a href="enquiries.html">Manage Enquiries</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li class="active"><a href="settings.html">Settings</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Settings</h1>
+            
+            <div class="settings-tabs">
+                <button class="tab-btn active" data-tab="general">General</button>
+                <button class="tab-btn" data-tab="security">Security</button>
+                <button class="tab-btn" data-tab="notifications">Notifications</button>
+            </div>
+            
+            <div class="tab-content active" id="general-tab">
+                <form class="settings-form">
+                    <div class="form-group">
+                        <label for="site-name">Site Name</label>
+                        <input type="text" id="site-name" value="My Admin Panel">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timezone">Timezone</label>
+                        <select id="timezone">
+                            <option>UTC</option>
+                            <option selected>Your Local Timezone</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn">Save Settings</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="security-tab">
+                <!-- Security settings would go here -->
+            </div>
+            
+            <div class="tab-content" id="notifications-tab">
+                <!-- Notification settings would go here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

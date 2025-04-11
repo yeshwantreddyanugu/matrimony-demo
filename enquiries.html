@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Enquiries - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="home.html">Dashboard</a></li>
+                <li><a href="add-profile.html">Add Profile</a></li>
+                <li><a href="view-profiles.html">View/Edit Profiles</a></li>
+                <li class="active"><a href="enquiries.html">Manage Enquiries</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Manage Enquiries</h1>
+            
+            <div class="enquiry-filters">
+                <select>
+                    <option>All Enquiries</option>
+                    <option>New</option>
+                    <option>In Progress</option>
+                    <option>Resolved</option>
+                </select>
+            </div>
+            
+            <div class="enquiries-list">
+                <div class="enquiry-card">
+                    <h3>Website Feedback</h3>
+                    <p>From: user@example.com</p>
+                    <p>Date: 2023-11-15</p>
+                    <p>Status: <span class="status-new">New</span></p>
+                    <button class="btn">View Details</button>
+                </div>
+                <!-- More enquiry cards would go here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

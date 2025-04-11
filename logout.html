@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <div class="logout-container">
+        <h1>Logging out...</h1>
+        <p>You are being logged out of the admin panel.</p>
+        <p>Redirecting to login page in <span id="countdown">5</span> seconds.</p>
+    </div>
+    
+    <script>
+        // Countdown and redirect
+        let seconds = 5;
+        const countdown = setInterval(() => {
+            seconds--;
+            document.getElementById('countdown').textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

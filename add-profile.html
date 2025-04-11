@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Profile - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles for the matrimony form */
+        .profile-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+            margin-right: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            min-height: 80px;
+        }
+        
+        #tribe-select {
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        
+        #tribe-select option {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="home.html">Dashboard</a></li>
+                <li class="active"><a href="add-profile.html">Add Profile</a></li>
+                <li><a href="view-profiles.html">View/Edit Profiles</a></li>
+                <li><a href="enquiries.html">Manage Enquiries</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Matrimony Profile Entry</h1>
+            
+            <form class="profile-form" id="matrimonyForm">
+                <div class="form-section">
+                    <h3>Profile Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="caste">1. Caste:</label>
+                            <input type="text" id="caste" name="caste" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="relationship">2. Relationship:</label>
+                            <select id="relationship" name="relationship" required>
+                                <option value="">Select</option>
+                                <option value="Bride">Bride</option>
+                                <option value="Groom">Groom</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">3. Name of the girl/boy:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="father_name">4. Name of the Father:</label>
+                            <input type="text" id="father_name" name="father_name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="father_occupation">Occupation:</label>
+                            <input type="text" id="father_occupation" name="father_occupation">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mother_name">5. Name of the Mother:</label>
+                            <input type="text" id="mother_name" name="mother_name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mother_occupation">Occupation:</label>
+                            <input type="text" id="mother_occupation" name="mother_occupation">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dob">6. Date of Birth:</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birth_place">Place of Birth:</label>
+                            <input type="text" id="birth_place" name="birth_place">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birth_time">Time of Birth:</label>
+                            <input type="time" id="birth_time" name="birth_time">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="height">7. Height (cm):</label>
+                            <input type="number" id="height" name="height" min="100" max="250">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="star">8. Star:</label>
+                            <input type="text" id="star" name="star">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="zodiac">9. Zodiac:</label>
+                            <input type="text" id="zodiac" name="zodiac">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tribe">10. Tribe:</label>
+                            <select id="tribe-select" name="tribe" disabled multiple>
+                                <option value="Motati">1. Motati</option>
+                                <option value="Velanati">2. Velanati</option>
+                                <option value="Morasa">3. Morasa</option>
+                                <option value="Nereti">4. Nereti</option>
+                                <option value="Ayodhya">5. Ayodhya</option>
+                                <option value="Panta">6. Panta</option>
+                                <option value="Pongalinati">7. Pongalinati</option>
+                                <option value="Pakanati">8. Pakanati</option>
+                                <option value="Bhumanci">9. Bhumanci</option>
+                                <option value="Kuriceti">10. Kuriceti</option>
+                                <option value="Munnuti">11. Munnuti</option>
+                                <option value="Desati">12. Desati</option>
+                                <option value="Kammapuri">13. Kammapuri</option>
+                                <option value="Gandikota">14. Gandikota</option>
+                                <option value="Kammapuri">15. Kammapuri</option>
+                                <option value="Gona">16. Gona</option>
+                                <option value="Chittepu">17. Chittepu</option>
+                                <option value="Kunchedugu">18. Kunchedugu</option>
+                                <option value="Gajula">19. Gajula</option>
+                                <option value="Konide">20. Konide</option>
+                                <option value="Pedakanti">21. Pedakanti</option>
+                                <option value="Gudati">22. Gudati</option>
+                                <option value="Gonugunta">23. Gonugunta</option>
+                                <option value="Desuri">24. Desuri</option>
+                                <option value="Nanugunda">25. Nanugunda</option>
+                                <option value="Neravatu">26. Neravatu</option>
+                                <option value="Palle">27. Palle</option>
+                                <option value="Balija">28. Balija</option>
+                                <option value="Bhusa">29. Bhusa</option>
+                                <option value="Togarcrdu">30. Togarcrdu</option>
+                                <option value="Yadlanu">31. Yadlanu</option>
+                                <option value="Renati">32. Renati</option>
+                                <option value="Laligunda">33. Laligunda</option>
+                                <option value="Sajjana">34. Sajjana</option>
+                                <option value="Sadara">35. Sadara</option>
+                                <option value="Aritaku">36. Aritaku</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Education & Career</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="education">11. Education:</label>
+                            <input type="text" id="education" name="education">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="occupation">12. Occupation / Job / Business:</label>
+                            <input type="text" id="occupation" name="occupation">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="income">13. Monthly Income:</label>
+                            <input type="text" id="income" name="income">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="assets">14. Asset Details:</label>
+                            <textarea id="assets" name="assets"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Family Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="brothers">15. Brothers (Married/Unmarried):</label>
+                            <input type="text" id="brothers" name="brothers">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="brothers_education">Education/Profession:</label>
+                            <input type="text" id="brothers_education" name="brothers_education">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sisters">16. Sisters (Married/Unmarried):</label>
+                            <input type="text" id="sisters" name="sisters">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sisters_education">Education:</label>
+                            <input type="text" id="sisters_education" name="sisters_education">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Location Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="native_place">17. Native Place:</label>
+                            <input type="text" id="native_place" name="native_place">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="current_residence">18. Current Residence:</label>
+                            <input type="text" id="current_residence" name="current_residence">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Additional Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="additional_education">Education:</label>
+                            <textarea id="additional_education" name="additional_education"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additional_occupation">Occupation:</label>
+                            <textarea id="additional_occupation" name="additional_occupation"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="colour">Colour:</label>
+                            <input type="text" id="colour" name="colour">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additional_height">Height:</label>
+                            <input type="text" id="additional_height" name="additional_height">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additional_location">Location:</label>
+                            <input type="text" id="additional_location" name="additional_location">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <button type="submit" class="btn">Save Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const casteInput = document.getElementById('caste');
+            const tribeSelect = document.getElementById('tribe-select');
+            
+            // Enable/disable tribe select based on caste input
+            casteInput.addEventListener('input', function() {
+                const casteValue = this.value.toLowerCase();
+                if (casteValue === 'oc' || casteValue === 'OC') {
+                    tribeSelect.disabled = false;
+                } else {
+                    tribeSelect.disabled = true;
+                    tribeSelect.selectedIndex = -1;
+                }
+            });
+            
+            // Form submission handler
+            document.getElementById('matrimonyForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would typically send the form data to your backend
+                alert('Profile saved successfully!');
+                this.reset();
+                tribeSelect.disabled = true;
+            });
+        });
+    </script>
+</body>
+</html>
