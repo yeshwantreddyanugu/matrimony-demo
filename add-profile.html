@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Profile - Admin Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ 
     <style>
         /* Additional styles for the matrimony form */
         .profile-form {
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
         .form-section {
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid #eee;
         }
-        
+
         .form-section h3 {
             color: #2c3e50;
             margin-bottom: 20px;
         }
-        
+
         .form-row {
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 15px;
         }
-        
+
         .form-group {
             flex: 1;
             min-width: 200px;
             margin-right: 20px;
             margin-bottom: 15px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #555;
         }
-        
-        .form-group input, 
-        .form-group select, 
+
+        .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 10px;
@@ -52,11 +56,11 @@
             border-radius: 4px;
             font-size: 14px;
         }
-        
+
         .form-group textarea {
             min-height: 80px;
         }
-        
+
         #tribe-select {
             height: 150px;
             overflow-y: auto;
@@ -64,12 +68,12 @@
             border-radius: 4px;
             padding: 5px;
         }
-        
+
         #tribe-select option {
             padding: 8px;
             border-bottom: 1px solid #eee;
         }
-        
+
         .btn {
             background-color: #3498db;
             color: white;
@@ -80,42 +84,101 @@
             font-size: 16px;
             transition: background-color 0.3s;
         }
-        
+
         .btn:hover {
             background-color: #2980b9;
         }
+
+        .photo-upload-container {
+            margin: 20px 0;
+        }
+
+        .photo-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #3498db;
+            display: block;
+            margin: 15px auto;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .upload-btn:hover {
+            background-color: #2980b9;
+        }
+
+        #photoFile {
+            display: none;
+        }
+
+        .photo-info {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
     </style>
 </head>
+
 <body>
     <div class="dashboard-container">
         <!-- Sidebar -->
         <div class="sidebar">
             <h2>Dashboard</h2>
             <ul>
-                <li><a href="home.html">Dashboard</a></li>
-                <li class="active"><a href="add-profile.html">Add Profile</a></li>
-                <li><a href="view-profiles.html">View/Edit Profiles</a></li>
-                <li><a href="enquiries.html">Manage Enquiries</a></li>
-                <li><a href="analytics.html">Analytics</a></li>
-                <li><a href="settings.html">Settings</a></li>
-                <li><a href="logout.html">Logout</a></li>
+                <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span>  Dashboard</span></a></li>
+                <li class="active"><a href="add-profile.html"><i class="fas fa-user-plus"></i><span>  Add
+                            Profile</span></a></li>
+                <li><a href="view-profiles.html"><i class="fas fa-users"></i><span>  View/Edit Profiles</span></a></li>
+                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a>
+                </li>
+                <li><a href="analytics.html"><i class="fas fa-chart-line"></i><span> Analytics</span></a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i><span> Settings</span></a></li>
+                <li><a href="user.html"><i class="fas fa-user-cog"></i><span> Users</span></a></li>
+                <li><a href="addBanner.html"><i class="fa-solid fa-images"></i><span> Add Banner</span></a></li>
+                <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span> View Banner</span></a></li>
+                <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i><span> Logout</span></a></li>
             </ul>
         </div>
-        
+
+
         <!-- Main Content -->
         <div class="main-content">
             <h1>Matrimony Profile Entry</h1>
-            
+
             <form class="profile-form" id="matrimonyForm">
+
+                <div class="form-section">
+                    <h3>Profile Photo</h3>
+                    <div class="photo-upload-container">
+                        <img id="photoPreview" class="photo-preview" src="https://via.placeholder.com/150"
+                            alt="Profile Photo Preview">
+                        <label for="photoFile" class="upload-btn">Choose Photo</label>
+                        <input type="file" id="photoFile" name="photo" accept="image/*">
+                        <div class="photo-info">Max size: 2MB | Formats: JPG, PNG</div>
+                    </div>
+                </div>
+
+
                 <div class="form-section">
                     <h3>Profile Details</h3>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="caste">1. Caste:</label>
                             <input type="text" id="caste" name="caste" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="relationship">2. Relationship:</label>
                             <select id="relationship" name="relationship" required>
@@ -125,72 +188,72 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">3. Name of the girl/boy:</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="father_name">4. Name of the Father:</label>
                             <input type="text" id="father_name" name="father_name" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="father_occupation">Occupation:</label>
                             <input type="text" id="father_occupation" name="father_occupation">
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="mother_name">5. Name of the Mother:</label>
                             <input type="text" id="mother_name" name="mother_name" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="mother_occupation">Occupation:</label>
                             <input type="text" id="mother_occupation" name="mother_occupation">
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="dob">6. Date of Birth:</label>
                             <input type="date" id="dob" name="dob" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="birth_place">Place of Birth:</label>
                             <input type="text" id="birth_place" name="birth_place">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="birth_time">Time of Birth:</label>
                             <input type="time" id="birth_time" name="birth_time">
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="height">7. Height (cm):</label>
                             <input type="number" id="height" name="height" min="100" max="250">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="star">8. Star:</label>
                             <input type="text" id="star" name="star">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="zodiac">9. Zodiac:</label>
                             <input type="text" id="zodiac" name="zodiac">
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="tribe">10. Tribe:</label>
@@ -235,27 +298,27 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-section">
                     <h3>Education & Career</h3>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="education">11. Education:</label>
                             <input type="text" id="education" name="education">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="occupation">12. Occupation / Job / Business:</label>
                             <input type="text" id="occupation" name="occupation">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="income">13. Monthly Income:</label>
                             <input type="text" id="income" name="income">
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="assets">14. Asset Details:</label>
@@ -263,185 +326,301 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-section">
                     <h3>Family Details</h3>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="brothers">15. Brothers (Married/Unmarried):</label>
                             <input type="text" id="brothers" name="brothers">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="brothers_education">Education/Profession:</label>
                             <input type="text" id="brothers_education" name="brothers_education">
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="sisters">16. Sisters (Married/Unmarried):</label>
                             <input type="text" id="sisters" name="sisters">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="sisters_education">Education:</label>
                             <input type="text" id="sisters_education" name="sisters_education">
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-section">
                     <h3>Location Details</h3>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="native_place">17. Native Place:</label>
                             <input type="text" id="native_place" name="native_place">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="current_residence">18. Current Residence:</label>
                             <input type="text" id="current_residence" name="current_residence">
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-section">
                     <h3>Additional Information</h3>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="additional_education">Education:</label>
-                            <textarea id="additional_education" name="additional_education" class="fixed-textarea"></textarea>
+                            <textarea id="additional_education" name="additional_education"
+                                class="fixed-textarea"></textarea>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="additional_occupation">Occupation:</label>
-                            <textarea id="additional_occupation" name="additional_occupation" class="fixed-textarea"></textarea>
+                            <textarea id="additional_occupation" name="additional_occupation"
+                                class="fixed-textarea"></textarea>
                         </div>
                     </div>
-                    
+
                     <style>
                         .fixed-textarea {
-                            resize: none; /* Disables resizing */
-                            width: 400px; /* Set a fixed width */
-                            height: 100px; /* Set a fixed height */
+                            resize: none;
+                            /* Disables resizing */
+                            width: 400px;
+                            /* Set a fixed width */
+                            height: 100px;
+                            /* Set a fixed height */
                             /* Optional additional styling */
                             padding: 8px;
                             border: 1px solid #ccc;
                             border-radius: 4px;
                             font-family: inherit;
                         }
-                        
+
                         /* If you want both textareas to be the same size */
-                        #additional_education, #additional_occupation {
+                        #additional_education,
+                        #additional_occupation {
                             resize: none;
                             width: 300px;
                             height: 100px;
                         }
                     </style>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="colour">Colour:</label>
                             <input type="text" id="colour" name="colour">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="additional_height">Height:</label>
                             <input type="text" id="additional_height" name="additional_height">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="additional_location">Location:</label>
                             <input type="text" id="additional_location" name="additional_location">
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <button type="submit" class="btn">Save Profile</button>
                 </div>
             </form>
         </div>
     </div>
-    
+
+
     <script>
+        const API_BASE_URL = 'https://2a8a-2401-4900-889d-a819-38bb-7f9a-34ca-e3df.ngrok-free.app/api/profiles';
+    
         document.addEventListener('DOMContentLoaded', function () {
             const casteInput = document.getElementById('caste');
             const tribeSelect = document.getElementById('tribe-select');
             const form = document.getElementById('matrimonyForm');
+            const photoFile = document.getElementById('photoFile');
+            const photoPreview = document.getElementById('photoPreview');
     
             let editMode = false;
-            let editProfileData = null;
+            let editProfileId = null;
     
-            // Check if edit mode is active
-            if (window.location.search.includes('edit=true')) {
-                editProfileData = JSON.parse(localStorage.getItem('editProfileData'));
-                if (editProfileData) {
-                    editMode = true;
-                    // Populate form fields
-                    for (const [key, value] of Object.entries(editProfileData)) {
-                        const field = document.querySelector(`[name="${key}"]`);
-                        if (field) field.value = value;
+            // Photo upload handling
+            photoFile.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    console.log('Photo selected:', file.name);
+                    const validTypes = ['image/jpeg', 'image/png'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please upload a JPG or PNG image');
+                        photoFile.value = '';
+                        console.warn('Invalid image type:', file.type);
+                        return;
                     }
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert('Image must be less than 2MB');
+                        photoFile.value = '';
+                        console.warn('Image too large:', file.size);
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        photoPreview.src = event.target.result;
+                        console.log('Photo preview loaded');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
     
-                    // Enable tribe if caste is OC
-                    const casteValue = editProfileData.caste?.toLowerCase();
-                    if (casteValue === 'oc') {
+            // Edit mode handling
+            if (window.location.search.includes('edit=true')) {
+                const editData = JSON.parse(localStorage.getItem('editProfileData'));
+                if (editData) {
+                    console.log('Edit mode enabled. Profile ID:', editData.id);
+                    editMode = true;
+                    editProfileId = editData.id;
+                    for (const [key, value] of Object.entries(editData)) {
+                        const field = document.querySelector(`[name="${key}"]`);
+                        if (field) {
+                            if (key === 'dateOfBirth' && value) {
+                                const date = new Date(value);
+                                field.value = date.toISOString().split('T')[0];
+                            } else if (key === 'birth_time' && value) {
+                                const time = new Date(value);
+                                field.value = time.toTimeString().substring(0, 5);
+                            } else {
+                                field.value = value;
+                            }
+                        }
+                    }
+                    if (editData.caste?.toLowerCase() === 'oc') {
                         tribeSelect.disabled = false;
+                    }
+                    if (editData.imagePath) {
+                        photoPreview.src = `${API_BASE_URL}/uploads/${editData.imagePath}`;
                     }
                 }
             }
     
-            // Enable/disable tribe select based on caste input
             casteInput.addEventListener('input', function () {
                 const casteValue = this.value.toLowerCase();
+                console.log('Caste input:', casteValue);
                 if (casteValue === 'oc') {
                     tribeSelect.disabled = false;
+                    console.log('Tribe dropdown enabled');
                 } else {
                     tribeSelect.disabled = true;
                     tribeSelect.selectedIndex = -1;
+                    console.log('Tribe dropdown disabled');
                 }
             });
     
-            // FORM SUBMIT HANDLER
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
+                console.log('Form submit triggered');
     
-                const formData = new FormData(this);
-                const profileData = Object.fromEntries(formData.entries());
+                try {
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Saving...';
     
-                let profiles = JSON.parse(localStorage.getItem('matrimonyProfiles')) || [];
+                    const formData = new FormData(form);
+                    const imageFile = photoFile.files[0];
     
-                if (editMode) {
-                    // Replace the old profile using its index
-                    const index = profiles.findIndex(p => p.name === editProfileData.name && p.dob === editProfileData.dob);
-                    if (index !== -1) {
-                        profiles[index] = profileData;
-                    } else {
-                        // fallback: add as new if not found
-                        profiles.push(profileData);
+                    // Create FormData that matches your ProfileRequestDTO
+                    const requestFormData = new FormData();
+    
+                    // Append all fields that match your DTO
+                    requestFormData.append('caste', formData.get('caste'));
+                    requestFormData.append('relationship', formData.get('relationship'));
+                    requestFormData.append('name', formData.get('name'));
+                    requestFormData.append('fatherName', formData.get('father_name'));
+                    requestFormData.append('fatherOccupation', formData.get('father_occupation'));
+                    requestFormData.append('motherName', formData.get('mother_name'));
+                    requestFormData.append('motherOccupation', formData.get('mother_occupation'));
+    
+                    // Handle date/time combination
+                    const dob = formData.get('dob');
+                    const birthTime = formData.get('birth_time') || '00:00:00';
+                    if (dob) {
+                        requestFormData.append('dateOfBirth', `${dob}T${birthTime}`);
                     }
-                    localStorage.removeItem('editProfileData'); // cleanup
-                } else {
-                    profiles.push(profileData); // Add new
+    
+                    // Append other fields
+                    requestFormData.append('height', formData.get('height'));
+                    requestFormData.append('star', formData.get('star'));
+                    requestFormData.append('zodiac', formData.get('zodiac'));
+                    requestFormData.append('tribe', formData.get('tribe'));
+                    requestFormData.append('education', formData.get('education'));
+                    requestFormData.append('occupation', formData.get('occupation'));
+                    requestFormData.append('monthlyIncome', formData.get('income'));
+                    requestFormData.append('assets', formData.get('assets'));
+                    requestFormData.append('brothersInfo', formData.get('brothers'));
+                    requestFormData.append('sistersInfo', formData.get('sisters'));
+                    requestFormData.append('nativePlace', formData.get('native_place'));
+                    requestFormData.append('currentResidence', formData.get('current_residence'));
+    
+                    // Append the image with the correct parameter name
+                    if (imageFile) {
+                        requestFormData.append('image', imageFile);
+                    }
+    
+                    // Updated URL for edit mode to match backend endpoint
+                    const url = editMode
+                        ? `${API_BASE_URL}/update/profile`  // Matches your @PutMapping
+                        : API_BASE_URL;  // Keep POST endpoint as is
+    
+                    const method = editMode ? 'PUT' : 'POST';
+    
+                    console.log(`Sending ${method} request to:`, url);
+                    console.log('Request payload:', Object.fromEntries(requestFormData));
+    
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                        },
+                        body: requestFormData
+                    });
+    
+                    console.log('Raw response:', response);
+    
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        console.error('Backend error response:', errorData);
+                        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+                    }
+    
+                    const result = await response.json();
+                    console.log('Backend success response:', result);
+    
+                    if (result) {
+                        alert(`Profile ${editMode ? 'updated' : 'created'} successfully!`);
+                        if (!editMode) form.reset();
+                        localStorage.removeItem('editProfileData');
+                        window.location.href = 'view-profiles.html';
+                    } else {
+                        throw new Error('Empty result from backend');
+                    }
+                } catch (error) {
+                    console.error('Error occurred:', error);
+                    alert('An error occurred: ' + error.message);
+                } finally {
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Save Profile';
                 }
-    
-                localStorage.setItem('matrimonyProfiles', JSON.stringify(profiles));
-    
-                alert('Profile saved successfully!');
-                this.reset();
-                tribeSelect.disabled = true;
-    
-                // Redirect to view page
-                window.location.href = 'view-profiles.html';
             });
         });
     </script>
-    
+
 
 </body>
+
 </html>

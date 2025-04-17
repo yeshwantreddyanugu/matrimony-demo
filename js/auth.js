@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const mobileInput = document.getElementById('mobile');
     const otpGroup = document.querySelector('.otp-group');
     const otpInput = document.getElementById('otp');
@@ -6,78 +6,90 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginBtn = document.getElementById('loginBtn');
     const timerElement = document.getElementById('timer');
     const loginForm = document.getElementById('loginForm');
-    
-    // Fixed OTP for testing
-    const FIXED_OTP = '123456';
-    let otp = FIXED_OTP;
+
+    const FIXED_OTP = '123456'; // Simulated backend OTP
     let timer;
-    let timeLeft = 120; // 2 minutes in seconds
-    
-    // Request OTP button click handler
-    requestOtpBtn.addEventListener('click', function() {
+    let timeLeft = 120;
+
+    // Handle "Request OTP"
+    requestOtpBtn.addEventListener('click', function () {
         const mobile = mobileInput.value.trim();
-        
-        // Simple validation
-        if (!mobile || !/^\d{10}$/.test(mobile)) {
-            alert('Please enter a valid 10-digit mobile number');
+
+        // Validate mobile number
+        if (!/^\d{10}$/.test(mobile)) {
+            alert('Please enter a valid 10-digit mobile number.');
             return;
         }
-        
-        // Immediately use the fixed OTP without generating a random one
-        console.log('Using fixed OTP: ' + FIXED_OTP); // For demo purposes
-                    
-        // Show OTP field and login button
+
+        // Simulate sending OTP (real world: call backend API here)
+        console.log(`OTP sent to +91-${mobile}: ${FIXED_OTP}`);
+
+        // Show OTP input and login button
         otpGroup.style.display = 'block';
         loginBtn.style.display = 'inline-block';
         requestOtpBtn.style.display = 'none';
-        
-        // Start timer
+
+        // Focus on OTP input
+        otpInput.focus();
+
+        // Start OTP expiration timer
         startTimer();
     });
-    
-    // Login form submission handler
-    loginForm.addEventListener('submit', function(e) {
+
+    // Handle Login form submission
+    loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         const enteredOtp = otpInput.value.trim();
-        
-        if (!enteredOtp || enteredOtp.length !== 6) {
-            alert('Please enter a valid 6-digit OTP');
+
+        // Validate OTP input
+        if (!/^\d{6}$/.test(enteredOtp)) {
+            alert('Please enter a valid 6-digit OTP.');
             return;
         }
-        
-        // Verify against the fixed OTP
+
+        // Check against fixed OTP
         if (enteredOtp === FIXED_OTP) {
-            // On successful verification, redirect to dashboard
-            window.location.href = 'home.html';
+            alert('OTP verified successfully!');
+            window.location.href = 'home.html'; // Redirect to dashboard
         } else {
             alert('Invalid OTP. Please try again.');
         }
     });
-    
-    // Timer functions
+
+    // Start countdown timer
     function startTimer() {
         clearInterval(timer);
         timeLeft = 120;
         updateTimerDisplay();
-        
-        timer = setInterval(function() {
+
+        timer = setInterval(function () {
             timeLeft--;
             updateTimerDisplay();
-            
+
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 alert('OTP expired. Please request a new one.');
-                otpGroup.style.display = 'none';
-                loginBtn.style.display = 'none';
-                requestOtpBtn.style.display = 'inline-block';
+                resetOtpUI();
             }
         }, 1000);
     }
-    
+
+    // Update timer display
     function updateTimerDisplay() {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
-        timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds
+            .toString()
+            .padStart(2, '0')}`;
+    }
+
+    // Reset OTP section after expiry
+    function resetOtpUI() {
+        otpGroup.style.display = 'none';
+        loginBtn.style.display = 'none';
+        requestOtpBtn.style.display = 'inline-block';
+        otpInput.value = '';
+        timerElement.textContent = '';
     }
 });

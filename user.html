@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0e173f;
+            --secondary-color: #0f0c41;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --danger-color: #f72585;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            height: 100vh;
+            transition: all 0.3s;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar li a i {
+            margin-right: 0.8rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 1.8rem;
+        }
+
+        .sidebar li.active a {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid white;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        /* Search Bar Styles */
+        .search-bar {
+            display: flex;
+            margin-bottom: 1.5rem;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+            outline: none;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        /* Table Styles */
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .users-table thead {
+            background-color: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .users-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .users-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .users-table tbody tr:hover {
+            background-color: rgba(72, 149, 239, 0.05);
+        }
+
+        .users-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .users-table tr:nth-child(even):hover {
+            background-color: rgba(72, 149, 239, 0.05);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .status-active {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .status-inactive {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        /* Loading and Error States */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 2rem;
+            color: var(--danger-color);
+            background-color: #f8d7da;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+                overflow: hidden;
+            }
+
+            .sidebar h2,
+            .sidebar li a span {
+                display: none;
+            }
+
+            .sidebar li a {
+                justify-content: center;
+                padding: 0.8rem 0;
+            }
+
+            .sidebar li a i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                margin-left: 70px;
+                padding: 1rem;
+            }
+
+            .users-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li><a href="add-profile.html"><i class="fas fa-user-plus"></i><span>Add Profile</span></a></li>
+            <li><a href="view-profiles.html"><i class="fas fa-users"></i><span>View/Edit Profiles</span></a></li>
+            <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span>Manage Enquiries</span></a></li>
+            <li><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+            <li class="active"><a href="user.html"><i class="fas fa-user-cog"></i><span>Users</span></a></li>
+            <li><a href="addBanner.html"><i class="fa-solid fa-images"></i><span> Add Banner</span></a></li>
+            <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span> View Banner</span></a></li>
+            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>User Management</h1>
+                <p class="subtitle">Manage system users and their permissions</p>
+            </header>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search users..." id="searchInput">
+                <button class="btn" id="searchBtn">Search</button>
+            </div>
+
+            <div class="table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be dynamically inserted here -->
+                        <tr>
+                            <td colspan="3" class="loading" id="loadingIndicator">
+                                <i class="fas fa-spinner fa-spin"></i> Loading user data...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function renderUsers(users) {
+            const tableBody = document.getElementById('usersTableBody');
+            if (!tableBody) {
+                console.error("usersTableBody element not found!");
+                return;
+            }
+
+            if (!users || users.length === 0) {
+                console.warn("No users found.");
+                tableBody.innerHTML = '<tr><td colspan="3" class="error-message">No users found in the system.</td></tr>';
+                return;
+            }
+
+            tableBody.innerHTML = '';
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.name || 'N/A'}</td>
+                    <td>${user.mail || 'N/A'}</td>
+                    <td>${user.date || 'N/A'}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function showError(message) {
+            console.error("Error:", message);
+            const tableBody = document.getElementById('usersTableBody');
+            if (tableBody) {
+                tableBody.innerHTML = '<tr><td colspan="3" class="error-message">' + message + '</td></tr>';
+            }
+        }
+
+        async function fetchUserData() {
+            console.log("Attempting to fetch user data...");
+
+            try {
+                const response = await fetch('https://2a8a-2401-4900-889d-a819-38bb-7f9a-34ca-e3df.ngrok-free.app/api/profiles/get/all/logins', {
+                    cache: "no-cache",
+                    headers: {
+                        'Accept': 'application/json', 
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                });
+
+                console.log("Fetch response status:", response.status);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get("content-type") || "";
+                console.log("Response Content-Type:", contentType);
+
+                if (contentType.includes("application/json")) {
+                    const data = await response.json();
+                    console.log("Data received:", data);
+                    renderUsers(data);
+                } else {
+                    const text = await response.text();
+                    console.warn("Non-JSON response received:", text);
+                    showError("Expected JSON, but received a different format.");
+                }
+
+            } catch (err) {
+                showError(`Failed to load user data. ${err.message}`);
+            } finally {
+                const loadingIndicator = document.getElementById('loadingIndicator');
+                if (loadingIndicator) {
+                    loadingIndicator.remove();
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("DOM loaded. Waiting a bit before fetching data...");
+            setTimeout(() => {
+                fetchUserData();
+            }, 500); // 500ms delay
+        });
+
+
+        const searchBtn = document.getElementById('searchBtn');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function () {
+                const searchTerm = document.getElementById('searchInput')?.value?.toLowerCase() || "";
+                const rows = document.querySelectorAll('#usersTableBody tr');
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        } else {
+            console.warn("Search button not found on page.");
+        }
+    </script>
+
+</body>
+
+</html>

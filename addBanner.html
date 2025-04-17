@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Banner - Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0e173f;
+            --secondary-color: #0f0c41;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --danger-color: #f72585;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            height: 100vh;
+            transition: all 0.3s;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar li a i {
+            margin-right: 0.8rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 1.8rem;
+        }
+
+        .sidebar li.active a {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid white;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .upload-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(72, 149, 239, 0.05);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .upload-area p {
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        #previewContainer {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-upload {
+            background-color: var(--success-color);
+        }
+
+        .btn-upload:hover {
+            background-color: #3ab0d6;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li><a href="add-profile.html"><i class="fas fa-user-plus"></i><span>Add Profile</span></a></li>
+            <li><a href="view-profiles.html"><i class="fas fa-users"></i><span>View/Edit Profiles</span></a></li>
+            <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span>Manage Enquiries</span></a></li>
+            <li><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+            <li><a href="user.html"><i class="fas fa-user-cog"></i><span>Users</span></a></li>
+            <li class="active"><a href="addBanner.html"><i class="fa-solid fa-images"></i><span>Add Banner</span></a></li>
+            <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span>View Banner</span></a></li>
+            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>Add Banner Image</h1>
+                <p class="subtitle">Upload a new banner image for your website</p>
+            </header>
+
+            <div class="upload-container">
+                <form id="bannerForm" enctype="multipart/form-data">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Click to upload banner image</h3>
+                        <p>PNG, JPG, or JPEG (Max. 5MB)</p>
+                        <input type="file" id="fileInput" name="bannerImage" accept="image/*">
+                    </div>
+
+                    <div id="previewContainer">
+                        <h4>Image Preview:</h4>
+                        <img id="imagePreview" src="#" alt="Banner Preview">
+                    </div>
+
+                    <button type="submit" class="btn btn-upload">Upload Banner</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Image preview functionality
+        document.getElementById('uploadArea').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+    
+        document.getElementById('fileInput').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = event.target.result;
+                    document.getElementById('previewContainer').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    
+        // Form submission
+        document.getElementById('bannerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+    
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files[0]) {
+                alert('Please select an image to upload');
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append('image', fileInput.files[0]); // Key must match backend's @RequestPart("image")
+    
+            fetch('https://4726-2401-4900-889d-a4de-4829-f87-835e-f51f.ngrok-free.app/api/profiles/banner', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Upload failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Banner uploaded successfully!');
+                document.getElementById('bannerForm').reset();
+                document.getElementById('previewContainer').style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error uploading banner: ' + error.message);
+            });
+        });
+    </script>
+    
+    
+</body>
+</html>
