@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
- 
+
     <style>
         /* Additional styles for the matrimony form */
         .profile-form {
@@ -97,11 +97,15 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            object-fit: cover;
+            object-fit: contain;
+            /* Changed from 'cover' */
             border: 3px solid #3498db;
             display: block;
             margin: 15px auto;
+            background-color: #fff;
+            /* Optional: shows behind transparent parts */
         }
+
 
         .upload-btn {
             display: inline-block;
@@ -136,10 +140,10 @@
         <div class="sidebar">
             <h2>Dashboard</h2>
             <ul>
-                <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span>  Dashboard</span></a></li>
-                <li class="active"><a href="add-profile.html"><i class="fas fa-user-plus"></i><span>  Add
+                <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
+                <li class="active"><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add
                             Profile</span></a></li>
-                <li><a href="view-profiles.html"><i class="fas fa-users"></i><span>  View/Edit Profiles</span></a></li>
+                <li><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit Profiles</span></a></li>
                 <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a>
                 </li>
                 <li><a href="analytics.html"><i class="fas fa-chart-line"></i><span> Analytics</span></a></li>
@@ -175,12 +179,109 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="caste">1. Caste:</label>
-                            <input type="text" id="caste" name="caste" required>
+                            <label for="caste">1. Caste: <span style="color: red;">*</span></label>
+                            <select id="caste" name="caste" required>
+                                <option value="">-- Select Caste --</option>
+
+                                <!-- BC-A -->
+                                <option value="BC-A (Munnur Kapu)">BC-A (Munnur Kapu)</option>
+                                <option value="BC-A (Goud – in some regions)">BC-A (Goud – in some regions)</option>
+                                <option value="BC-A (Gangaputra / Jalari)">BC-A (Gangaputra / Jalari)</option>
+                                <option value="BC-A (Kummari – potters)">BC-A (Kummari – potters)</option>
+                                <option value="BC-A (Vaddera – stone cutters)">BC-A (Vaddera – stone cutters)</option>
+                                <option value="BC-A (Besta – fishermen)">BC-A (Besta – fishermen)</option>
+                                <option value="BC-A (Are / Arey Kshatriya)">BC-A (Are / Arey Kshatriya)</option>
+                                <option value="BC-A (Kuruba – in some regions)">BC-A (Kuruba – in some regions)</option>
+                                <option value="BC-A (Rajaka – washermen)">BC-A (Rajaka – washermen)</option>
+                                <option value="BC-A (Kamsali – goldsmiths)">BC-A (Kamsali – goldsmiths)</option>
+                                <option value="BC-A (Sagara / Uppara – salt workers)">BC-A (Sagara / Uppara – salt
+                                    workers)</option>
+
+                                <!-- BC-B -->
+                                <option value="BC-B (Patel)">BC-B (Patel)</option>
+                                <option value="BC-B (Yadav / Golla)">BC-B (Yadav / Golla)</option>
+                                <option value="BC-B (Mudiraj / Mutrasi)">BC-B (Mudiraj / Mutrasi)</option>
+                                <option value="BC-B (Goud – toddy tappers)">BC-B (Goud – toddy tappers)</option>
+                                <option value="BC-B (Gandla)">BC-B (Gandla)</option>
+                                <option value="BC-B (Kuruma – in Telangana)">BC-B (Kuruma – in Telangana)</option>
+                                <option value="BC-B (Koppula Velama – Telangana)">BC-B (Koppula Velama – Telangana)
+                                </option>
+                                <option value="BC-B (Thogata Veera Kshatriya)">BC-B (Thogata Veera Kshatriya)</option>
+                                <option value="BC-B (Are Katikam / Kapu – in some areas)">BC-B (Are Katikam / Kapu – in
+                                    some areas)</option>
+
+                                <!-- BC-C -->
+                                <option value="BC-C (Christian converts from BC castes)">BC-C (Christian converts from
+                                    BC castes)</option>
+
+                                <!-- BC-D -->
+                                <option value="BC-D (Kapu)">BC-D (Kapu)</option>
+                                <option value="BC-D (Telaga)">BC-D (Telaga)</option>
+                                <option value="BC-D (Balija)">BC-D (Balija)</option>
+                                <option value="BC-D (Ontari)">BC-D (Ontari)</option>
+                                <option value="BC-D (Munnuru Kapu)">BC-D (Munnuru Kapu)</option>
+                                <option value="BC-D (Kamma)">BC-D (Kamma)</option>
+                                <option value="BC-D (Reddy)">BC-D (Reddy)</option>
+                                <option value="BC-D (Velama)">BC-D (Velama)</option>
+
+                                <!-- BC-E -->
+                                <option value="BC-E (Shaik)">BC-E (Shaik)</option>
+                                <option value="BC-E (Syed)">BC-E (Syed)</option>
+                                <option value="BC-E (Moghal)">BC-E (Moghal)</option>
+                                <option value="BC-E (Pathan)">BC-E (Pathan)</option>
+                                <option value="BC-E (Qureshi / Butcher)">BC-E (Qureshi / Butcher)</option>
+                                <option value="BC-E (Labbi)">BC-E (Labbi)</option>
+                                <option value="BC-E (Mehtar / Muslim scavenger)">BC-E (Mehtar / Muslim scavenger)
+                                </option>
+                                <option value="BC-E (Ansari – weavers)">BC-E (Ansari – weavers)</option>
+
+                                <!-- SC -->
+                                <option value="SC (Madiga)">SC (Madiga)</option>
+                                <option value="SC (Mala)">SC (Mala)</option>
+                                <option value="SC (Relli)">SC (Relli)</option>
+                                <option value="SC (Dommara / Dombar)">SC (Dommara / Dombar)</option>
+                                <option value="SC (Chakkiliyan / Rajaka)">SC (Chakkiliyan / Rajaka)</option>
+                                <option value="SC (Pakir / Faqir)">SC (Pakir / Faqir)</option>
+                                <option value="SC (Bindla)">SC (Bindla)</option>
+                                <option value="SC (Budaga Jangam)">SC (Budaga Jangam)</option>
+                                <option value="SC (Vamsha Raj)">SC (Vamsha Raj)</option>
+                                <option value="SC (Poosala)">SC (Poosala)</option>
+                                <option value="SC (Valluvan)">SC (Valluvan)</option>
+                                <option value="SC (Boya)">SC (Boya)</option>
+                                <option value="SC (Thoti)">SC (Thoti)</option>
+                                <option value="SC (Adi Andhra)">SC (Adi Andhra)</option>
+                                <option value="SC (Adi Dravida)">SC (Adi Dravida)</option>
+                                <option value="SC (Arunthathiyar)">SC (Arunthathiyar)</option>
+
+                                <!-- ST -->
+                                <option value="ST (Lambada / Banjara / Sugali)">ST (Lambada / Banjara / Sugali)</option>
+                                <option value="ST (Gond)">ST (Gond)</option>
+                                <option value="ST (Koya)">ST (Koya)</option>
+                                <option value="ST (Chenchu)">ST (Chenchu)</option>
+                                <option value="ST (Yerukala)">ST (Yerukala)</option>
+                                <option value="ST (Yanadi)">ST (Yanadi)</option>
+                                <option value="ST (Konda Reddy)">ST (Konda Reddy)</option>
+                                <option value="ST (Konda Dora)">ST (Konda Dora)</option>
+                                <option value="ST (Savara)">ST (Savara)</option>
+                                <option value="ST (Jatapu)">ST (Jatapu)</option>
+                                <option value="ST (Kammara)">ST (Kammara)</option>
+                                <option value="ST (Valmiki / Boya)">ST (Valmiki / Boya)</option>
+                                <option value="ST (Gadaba)">ST (Gadaba)</option>
+                                <option value="ST (Hill Reddi)">ST (Hill Reddi)</option>
+                                <option value="ST (Kolam)">ST (Kolam)</option>
+                                <option value="ST (Thoti)">ST (Thoti)</option>
+                                <option value="ST (Porja)">ST (Porja)</option>
+                                <option value="ST (Bagata)">ST (Bagata)</option>
+                                <option value="ST (Andh)">ST (Andh)</option>
+
+                                <!-- OC -->
+                                <option value="OC">OC</option>
+                            </select>
                         </div>
 
+
                         <div class="form-group">
-                            <label for="relationship">2. Relationship:</label>
+                            <label for="relationship">2. Relationship: <span style="color: red;">*</span></label>
                             <select id="relationship" name="relationship" required>
                                 <option value="">Select</option>
                                 <option value="Bride">Bride</option>
@@ -191,38 +292,94 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">3. Name of the girl/boy:</label>
+                            <label for="name">3. Name of the girl/boy: <span style="color: red;">*</span></label>
                             <input type="text" id="name" name="name" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="father_name">4. Name of the Father:</label>
+                            <label for="father_name">4. Name of the Father: <span style="color: red;">*</span></label>
                             <input type="text" id="father_name" name="father_name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="father_occupation">Occupation:</label>
-                            <input type="text" id="father_occupation" name="father_occupation">
+                            <label for="father_occupation">👨‍👧 Father Occupation:</label>
+                            <select id="father_occupation" name="father_occupation">
+                                <option value="">-- Select Occupation --</option>
+                                <option value="Farmer">Farmer</option>
+                                <option value="Agricultural Labourer">Agricultural Labourer</option>
+                                <option value="Daily Wage Worker">Daily Wage Worker</option>
+                                <option value="Driver (Auto/Taxi/Truck)">Driver (Auto/Taxi/Truck)</option>
+                                <option value="Government Employee">Government Employee</option>
+                                <option value="Private Employee">Private Employee</option>
+                                <option value="Businessman">Businessman</option>
+                                <option value="Shop Owner">Shop Owner</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Lecturer / Professor">Lecturer / Professor</option>
+                                <option value="Police / Army / Defense">Police / Army / Defense</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Carpenter">Carpenter</option>
+                                <option value="Factory Worker">Factory Worker</option>
+                                <option value="Contractor">Contractor</option>
+                                <option value="Real Estate Agent">Real Estate Agent</option>
+                                <option value="Politician / Local Leader">Politician / Local Leader</option>
+                                <option value="Priest / Pujari">Priest / Pujari</option>
+                                <option value="Fisherman">Fisherman</option>
+                                <option value="Technician">Technician</option>
+                                <option value="Software Engineer / IT Employee">Software Engineer / IT Employee</option>
+                                <option value="Engineer (Civil/Mechanical/etc.)">Engineer (Civil/Mechanical/etc.)
+                                </option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Lawyer">Lawyer</option>
+                                <option value="Retired">Retired</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Deceased">Deceased</option>
+                            </select>
                         </div>
+
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="mother_name">5. Name of the Mother:</label>
+                            <label for="mother_name">5. Name of the Mother: <span style="color: red;">*</span></label>
                             <input type="text" id="mother_name" name="mother_name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="mother_occupation">Occupation:</label>
-                            <input type="text" id="mother_occupation" name="mother_occupation">
+                            <label for="mother_occupation">👩‍👧 Mother Occupation:</label>
+                            <select id="mother_occupation" name="mother_occupation">
+                                <option value="">-- Select Occupation --</option>
+                                <option value="Housewife">Housewife</option>
+                                <option value="Daily Wage Worker">Daily Wage Worker</option>
+                                <option value="Agricultural Labourer">Agricultural Labourer</option>
+                                <option value="Government Employee">Government Employee</option>
+                                <option value="Private Employee">Private Employee</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Anganwadi Worker">Anganwadi Worker</option>
+                                <option value="ASHA Worker">ASHA Worker</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Tailor / Stitching Work">Tailor / Stitching Work</option>
+                                <option value="Self-Employed / Small Business">Self-Employed / Small Business</option>
+                                <option value="Shop Owner">Shop Owner</option>
+                                <option value="Maid / Domestic Helper">Maid / Domestic Helper</option>
+                                <option value="Factory Worker">Factory Worker</option>
+                                <option value="Cook">Cook</option>
+                                <option value="Politician / Local Leader">Politician / Local Leader</option>
+                                <option value="Software Employee / IT">Software Employee / IT</option>
+                                <option value="Retired">Retired</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Deceased">Deceased</option>
+                            </select>
                         </div>
+
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="dob">6. Date of Birth:</label>
+                            <label for="dob">6. Date of Birth: <span style="color: red;">*</span></label>
                             <input type="date" id="dob" name="dob" required>
                         </div>
 
@@ -232,31 +389,145 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="birth_time">Time of Birth:</label>
+                            <label for="birth_time">Time of Birth: (24hrs format)</label>
                             <input type="time" id="birth_time" name="birth_time">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="height">7. Height (cm):</label>
-                            <input type="number" id="height" name="height" min="100" max="250">
+                            <label for="height">7. Height(in ft): <span style="color: red;">*</span></label>
+                            <select id="height" name="height" required>
+                                <option value="91">3'0"</option>
+                                <option value="93">3'1"</option>
+                                <option value="95">3'2"</option>
+                                <option value="97">3'3"</option>
+                                <option value="99">3'4"</option>
+                                <option value="102">3'5"</option>
+                                <option value="104">3'6"</option>
+                                <option value="106">3'7"</option>
+                                <option value="108">3'8"</option>
+                                <option value="110">3'9"</option>
+                                <option value="112">3'10"</option>
+                                <option value="114">3'11"</option>
+                                <option value="117">4'0"</option>
+                                <option value="119">4'1"</option>
+                                <option value="121">4'2"</option>
+                                <option value="123">4'3"</option>
+                                <option value="125">4'4"</option>
+                                <option value="127">4'5"</option>
+                                <option value="130">4'6"</option>
+                                <option value="132">4'7"</option>
+                                <option value="134">4'8"</option>
+                                <option value="136">4'9"</option>
+                                <option value="138">4'10"</option>
+                                <option value="140">4'11"</option>
+                                <option value="142">5'0"</option>
+                                <option value="144">5'1"</option>
+                                <option value="147">5'2"</option>
+                                <option value="149">5'3"</option>
+                                <option value="151">5'4"</option>
+                                <option value="153">5'5"</option>
+                                <option value="155">5'6"</option>
+                                <option value="157">5'7"</option>
+                                <option value="160">5'8"</option>
+                                <option value="162">5'9"</option>
+                                <option value="164">5'10"</option>
+                                <option value="166">5'11"</option>
+                                <option value="168">6'0"</option>
+                                <option value="170">6'1"</option>
+                                <option value="173">6'2"</option>
+                                <option value="175">6'3"</option>
+                                <option value="177">6'4"</option>
+                                <option value="179">6'5"</option>
+                                <option value="181">6'6"</option>
+                                <option value="183">6'7"</option>
+                                <option value="185">6'8"</option>
+                                <option value="188">6'9"</option>
+                                <option value="190">6'10"</option>
+                                <option value="192">6'11"</option>
+                                <option value="195">7'0"</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="star">8. Star:</label>
-                            <input type="text" id="star" name="star">
+                            <label for="star">🌟 8. Star (Nakshatra): <span style="color: red;">*</span></label>
+                            <select id="star" name="star" required>
+                                <option value="">-- Select Star --</option>
+                                <option value="Ashwini">Ashwini (అశ్విని)</option>
+                                <option value="Bharani">Bharani (భరణి)</option>
+                                <option value="Krittika">Krittika (కృత్తిక)</option>
+                                <option value="Rohini">Rohini (రోహిణి)</option>
+                                <option value="Mrigashira">Mrigashira (మృగశిర)</option>
+                                <option value="Ardra">Ardra (ఆర్ద్ర)</option>
+                                <option value="Punarvasu">Punarvasu (పునర్వసు)</option>
+                                <option value="Pushyami">Pushyami / Pushya (పుష్యమి)</option>
+                                <option value="Ashlesha">Ashlesha (ఆశ్లేష)</option>
+                                <option value="Magha">Magha (మఘ)</option>
+                                <option value="Purva Phalguni">Purva Phalguni (పూర్వ ఫల్గుణి)</option>
+                                <option value="Uttara Phalguni">Uttara Phalguni (ఉత్తర ఫల్గుణి)</option>
+                                <option value="Hasta">Hasta (హస్త)</option>
+                                <option value="Chitra">Chitra (చిత్ర)</option>
+                                <option value="Swati">Swati (స్వాతి)</option>
+                                <option value="Vishakha">Vishakha (విశాఖ)</option>
+                                <option value="Anuradha">Anuradha (అనూరాధ)</option>
+                                <option value="Jyeshta">Jyeshta (జ్యేష్ఠ)</option>
+                                <option value="Moola">Moola (మూల)</option>
+                                <option value="Purvashada">Purvashada (పూర్వాషాఢ)</option>
+                                <option value="Uttarashada">Uttarashada (ఉత్తరాషాఢ)</option>
+                                <option value="Shravana">Shravana (శ్రవణ)</option>
+                                <option value="Dhanishta">Dhanishta (ధనిష్ట)</option>
+                                <option value="Shatabhisha">Shatabhisha (శతభిష)</option>
+                                <option value="Purva Bhadrapada">Purva Bhadrapada (పూర్వ భాద్రపద)</option>
+                                <option value="Uttara Bhadrapada">Uttara Bhadrapada (ఉత్తర భాద్రపద)</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="zodiac">9. Zodiac:</label>
-                            <input type="text" id="zodiac" name="zodiac">
+                            <label for="zodiac">9. Zodiac (Rashi): <span style="color: red;">*</span></label>
+                            <select id="zodiac" name="zodiac" required>
+                                <option value="">-- Select Zodiac --</option>
+                                <option value="Mesha">Mesha (మేషం) – Aries ♈</option>
+                                <option value="Vrishabha">Vrishabha (వృషభం) – Taurus ♉</option>
+                                <option value="Mithuna">Mithuna (మిథునం) – Gemini ♊</option>
+                                <option value="Karka">Karka (కర్కాటకం) – Cancer ♋</option>
+                                <option value="Simha">Simha (సింహం) – Leo ♌</option>
+                                <option value="Kanya">Kanya (కన్యా) – Virgo ♍</option>
+                                <option value="Tula">Tula (తులా) – Libra ♎</option>
+                                <option value="Vrischika">Vrischika (వృశ్చికం) – Scorpio ♏</option>
+                                <option value="Dhanu">Dhanu (ధనుస్సు) – Sagittarius ♐</option>
+                                <option value="Makara">Makara (మకరం) – Capricorn ♑</option>
+                                <option value="Kumbha">Kumbha (కుంభం) – Aquarius ♒</option>
+                                <option value="Meena">Meena (మీనం) – Pisces ♓</option>
+                            </select>
                         </div>
+
+                        <!-- Added Colour Field -->
+                        <div class="form-group">
+                            <label for="colour">10. Colour:</label>
+                            <select id="colour" name="colour">
+                                <option value="">-- Select Skin Tone --</option>
+                                <option value="Very Light">Very Light – Pale skin, often looks white</option>
+                                <option value="Light">Light – Fair skin, with pinkish or yellowish tones</option>
+                                <option value="Medium Light">Medium Light – Slightly darker than light, but still pale
+                                </option>
+                                <option value="Olive">Olive – Skin with a greenish or yellowish tint</option>
+                                <option value="Tan">Tan – Light brown, like skin after being in the sun</option>
+                                <option value="Brown">Brown – Medium brown skin</option>
+                                <option value="Caramel">Caramel – Light to medium brown, with a golden or warm tone
+                                </option>
+                                <option value="Dark Brown">Dark Brown – Rich brown skin</option>
+                                <option value="Very Dark">Very Dark – Deep brown or black skin, often cool-toned
+                                </option>
+                            </select>
+                        </div>
+
                     </div>
+
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="tribe">10. Tribe:</label>
+                            <label for="tribe">11. Tribe:</label>
                             <select id="tribe-select" name="tribe" disabled multiple>
                                 <option value="Motati">1. Motati</option>
                                 <option value="Velanati">2. Velanati</option>
@@ -304,27 +575,109 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="education">11. Education:</label>
-                            <input type="text" id="education" name="education">
+                            <label for="education">🎓 12. Education: <span style="color: red;">*</span></label>
+                            <select id="education" name="education" required>
+                                <option value="">-- Select Education --</option>
+                                <option value="No Formal Education">No Formal Education</option>
+                                <option value="Primary School">Primary School (1st–5th Class)</option>
+                                <option value="High School">High School (6th–10th Class)</option>
+                                <option value="Intermediate">Intermediate / 12th Standard</option>
+                                <option value="ITI/Polytechnic/Diploma">ITI / Polytechnic / Diploma</option>
+                                <option value="Bachelor’s Degree">Bachelor’s Degree – BA / BSc / BCom</option>
+                                <option value="B.Tech/BE">B.Tech / BE</option>
+                                <option value="BBA/BBM">BBA / BBM</option>
+                                <option value="BCA">BCA</option>
+                                <option value="LLB">LLB</option>
+                                <option value="MBBS/BDS/BAMS/BHMS">MBBS / BDS / BAMS / BHMS</option>
+                                <option value="Nursing">Nursing</option>
+                                <option value="B.Ed/D.Ed">B.Ed / D.Ed</option>
+                                <option value="CA/ICWA/CS">CA / ICWA / CS</option>
+                                <option value="BFA">Bachelor of Fine Arts (BFA)</option>
+                                <option value="BHM">Bachelor of Hotel Management (BHM)</option>
+                                <option value="Other Bachelor's Degree">Other Bachelor's Degree</option>
+                                <option value="Master’s Degree">Master’s Degree – MA / MSc / MCom</option>
+                                <option value="M.Tech/ME">M.Tech / ME</option>
+                                <option value="MBA/PGDM">MBA / PGDM</option>
+                                <option value="MCA">MCA</option>
+                                <option value="M.Ed">M.Ed</option>
+                                <option value="LLM">LLM</option>
+                                <option value="MD/MS/MDS">MD / MS / MDS</option>
+                                <option value="Ph.D/Doctorate">Ph.D / Doctorate</option>
+                                <option value="Preparing for Govt. Exams">Preparing for Govt. Exams</option>
+                                <option value="Other/Not Mentioned">Other / Not Mentioned</option>
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="occupation">12. Occupation / Job / Business:</label>
-                            <input type="text" id="occupation" name="occupation">
-                        </div>
 
                         <div class="form-group">
-                            <label for="income">13. Monthly Income:</label>
-                            <input type="text" id="income" name="income">
+                            <label for="occupation">💼 13. Occupation / Business: <span
+                                    style="color: red;">*</span></label>
+                            <select id="occupation" name="occupation" required>
+                                <option value="">-- Select Occupation --</option>
+                                <option value="Not Working">Not Working</option>
+                                <option value="Student">Student</option>
+                                <option value="Farmer/Agriculture">Farmer / Agriculture</option>
+                                <option value="Daily Wage Worker">Daily Wage Worker / Labour</option>
+                                <option value="Driver">Driver (Auto/Taxi/Truck)</option>
+                                <option value="Private Employee">Private Employee</option>
+                                <option value="Government Employee">Government Employee</option>
+                                <option value="Police/Army/Defense">Police / Army / Defense</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Lecturer/Professor">Lecturer / Professor</option>
+                                <option value="Software/IT Professional">Software / IT Professional</option>
+                                <option value="Engineer">Engineer (Civil/Mechanical/etc.)</option>
+                                <option value="Doctor/Nurse/Medical Field">Doctor / Nurse / Medical Field</option>
+                                <option value="Business Owner">Business Owner</option>
+                                <option value="Shop Owner/Self-Employed">Shop Owner / Self-Employed</option>
+                                <option value="Marketing/Sales Executive">Marketing / Sales Executive</option>
+                                <option value="Bank Employee">Bank Employee</option>
+                                <option value="Chartered Accountant/Auditor">Chartered Accountant / Auditor</option>
+                                <option value="Advocate/Legal Professional">Advocate / Legal Professional</option>
+                                <option value="Actor/Artist/Musician">Actor / Artist / Musician</option>
+                                <option value="Fashion Designer/Tailor">Fashion Designer / Tailor</option>
+                                <option value="Chef/Cook">Chef / Cook</option>
+                                <option value="Real Estate Agent">Real Estate Agent</option>
+                                <option value="Politician/Panchayat Leader">Politician / Panchayat Leader</option>
+                                <option value="Scientist/Researcher">Scientist / Researcher</option>
+                                <option value="Media/Journalist">Media / Journalist</option>
+                                <option value="Technician/Mechanic">Technician / Mechanic</option>
+                                <option value="Electrician/Plumber/Carpenter">Electrician / Plumber / Carpenter</option>
+                                <option value="NGO/Social Worker">NGO / Social Worker</option>
+                                <option value="Freelancer/Online Business">Freelancer / Online Business</option>
+                                <option value="Abroad/Working Overseas">Abroad / Working Overseas</option>
+                                <option value="Retired">Retired</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="income">14. Monthly Income: <span style="color: red;">*</span></label>
+                            <input type="text" id="income" name="income" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="assets">14. Asset Details:</label>
-                            <textarea id="assets" name="assets"></textarea>
+                            <label for="assets">15. Asset Details: <span style="color: red;">*</span></label>
+                            <textarea id="assets" name="assets" class="assets-textarea"></textarea>
                         </div>
+                        <style>
+                            .assets-textarea {
+                                resize: none;
+                                /* Disables resizing */
+                                width: 400px;
+                                /* Set a fixed width */
+                                height: 100px;
+                                /* Set a fixed height */
+                                padding: 8px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;
+                                font-family: inherit;
+                            }
+                        </style>
                     </div>
+
                 </div>
 
                 <div class="form-section">
@@ -332,25 +685,92 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="brothers">15. Brothers (Married/Unmarried):</label>
-                            <input type="text" id="brothers" name="brothers">
+                            <label for="brothers">16. Brothers (Married/Unmarried):</label>
+                            <select id="brothers" name="brothers" required>
+                                <option value="">-- Select Option --</option>
+                                <option value="Married">Married</option>
+                                <option value="Unmarried">Unmarried</option>
+                            </select>
                         </div>
 
+
                         <div class="form-group">
-                            <label for="brothers_education">Education/Profession:</label>
-                            <input type="text" id="brothers_education" name="brothers_education">
+                            <label for="brothers_education">Education:</label>
+                            <select id="education" name="education">
+                                <option value="">-- Select Education --</option>
+                                <option value="No Formal Education">No Formal Education</option>
+                                <option value="Primary School">Primary School (1st–5th Class)</option>
+                                <option value="High School">High School (6th–10th Class)</option>
+                                <option value="Intermediate">Intermediate / 12th Standard</option>
+                                <option value="ITI/Polytechnic/Diploma">ITI / Polytechnic / Diploma</option>
+                                <option value="Bachelor’s Degree">Bachelor’s Degree – BA / BSc / BCom</option>
+                                <option value="B.Tech/BE">B.Tech / BE</option>
+                                <option value="BBA/BBM">BBA / BBM</option>
+                                <option value="BCA">BCA</option>
+                                <option value="LLB">LLB</option>
+                                <option value="MBBS/BDS/BAMS/BHMS">MBBS / BDS / BAMS / BHMS</option>
+                                <option value="Nursing">Nursing</option>
+                                <option value="B.Ed/D.Ed">B.Ed / D.Ed</option>
+                                <option value="CA/ICWA/CS">CA / ICWA / CS</option>
+                                <option value="BFA">Bachelor of Fine Arts (BFA)</option>
+                                <option value="BHM">Bachelor of Hotel Management (BHM)</option>
+                                <option value="Other Bachelor's Degree">Other Bachelor's Degree</option>
+                                <option value="Master’s Degree">Master’s Degree – MA / MSc / MCom</option>
+                                <option value="M.Tech/ME">M.Tech / ME</option>
+                                <option value="MBA/PGDM">MBA / PGDM</option>
+                                <option value="MCA">MCA</option>
+                                <option value="M.Ed">M.Ed</option>
+                                <option value="LLM">LLM</option>
+                                <option value="MD/MS/MDS">MD / MS / MDS</option>
+                                <option value="Ph.D/Doctorate">Ph.D / Doctorate</option>
+                                <option value="Preparing for Govt. Exams">Preparing for Govt. Exams</option>
+                                <option value="Other/Not Mentioned">Other / Not Mentioned</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="sisters">16. Sisters (Married/Unmarried):</label>
-                            <input type="text" id="sisters" name="sisters">
+                            <label for="sisters">17. Sisters (Married/Unmarried):</label>
+                            <select id="brothers" name="brothers" required>
+                                <option value="">-- Select Option --</option>
+                                <option value="Married">Married</option>
+                                <option value="Unmarried">Unmarried</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label for="sisters_education">Education:</label>
-                            <input type="text" id="sisters_education" name="sisters_education">
+                            <select id="education" name="education">
+                                <option value="">-- Select Education --</option>
+                                <option value="No Formal Education">No Formal Education</option>
+                                <option value="Primary School">Primary School (1st–5th Class)</option>
+                                <option value="High School">High School (6th–10th Class)</option>
+                                <option value="Intermediate">Intermediate / 12th Standard</option>
+                                <option value="ITI/Polytechnic/Diploma">ITI / Polytechnic / Diploma</option>
+                                <option value="Bachelor’s Degree">Bachelor’s Degree – BA / BSc / BCom</option>
+                                <option value="B.Tech/BE">B.Tech / BE</option>
+                                <option value="BBA/BBM">BBA / BBM</option>
+                                <option value="BCA">BCA</option>
+                                <option value="LLB">LLB</option>
+                                <option value="MBBS/BDS/BAMS/BHMS">MBBS / BDS / BAMS / BHMS</option>
+                                <option value="Nursing">Nursing</option>
+                                <option value="B.Ed/D.Ed">B.Ed / D.Ed</option>
+                                <option value="CA/ICWA/CS">CA / ICWA / CS</option>
+                                <option value="BFA">Bachelor of Fine Arts (BFA)</option>
+                                <option value="BHM">Bachelor of Hotel Management (BHM)</option>
+                                <option value="Other Bachelor's Degree">Other Bachelor's Degree</option>
+                                <option value="Master’s Degree">Master’s Degree – MA / MSc / MCom</option>
+                                <option value="M.Tech/ME">M.Tech / ME</option>
+                                <option value="MBA/PGDM">MBA / PGDM</option>
+                                <option value="MCA">MCA</option>
+                                <option value="M.Ed">M.Ed</option>
+                                <option value="LLM">LLM</option>
+                                <option value="MD/MS/MDS">MD / MS / MDS</option>
+                                <option value="Ph.D/Doctorate">Ph.D / Doctorate</option>
+                                <option value="Preparing for Govt. Exams">Preparing for Govt. Exams</option>
+                                <option value="Other/Not Mentioned">Other / Not Mentioned</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -359,17 +779,70 @@
                     <h3>Location Details</h3>
 
                     <div class="form-row">
+
                         <div class="form-group">
-                            <label for="native_place">17. Native Place:</label>
-                            <input type="text" id="native_place" name="native_place">
+                            <label for="state"> 18.State: <span style="color: red;">*</span></label>
+                            <select id="state" name="state" required onchange="updateDistricts()">
+                                <option value="">-- Select State --</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="current_residence">18. Current Residence:</label>
-                            <input type="text" id="current_residence" name="current_residence">
+                            <label for="district">District: <span style="color: red;">*</span></label>
+                            <select id="district" name="district" required>
+                                <option value="">-- Select District --</option>
+                            </select>
                         </div>
+
+                        <script>
+                            const districts = {
+                                "Telangana": [
+                                    "Hyderabad", "Khammam", "Nalgonda", "Warangal", "Nizamabad", "Mahabubnagar", "Medak",
+                                    "Karimnagar", "Adilabad", "Jagtial", "Kothagudem", "Suryapet", "Mahabubabad", "Rajanna Sircilla",
+                                    "Peddapalli", "Kamareddy", "Wanaparthy", "Nagarkurnool", "Vikarabad", "Jayashankar-Bhupalapally",
+                                    "Mancherial", "Manuguru", "Sangareddy", "Medchal-Malkajgiri"
+                                ],
+                                "Andhra Pradesh": [
+                                    "Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Prakasam", "Srikakulam",
+                                    "Visakhapatnam", "West Godavari", "Kadapa (YSR)", "Nellore", "Vizianagaram", "Nandyal", "Bapatla",
+                                    "Rajamahendravaram", "Peddapalli"
+                                ]
+                            };
+
+                            function updateDistricts() {
+                                const stateSelect = document.getElementById("state");
+                                const districtSelect = document.getElementById("district");
+                                const selectedState = stateSelect.value;
+
+                                // Clear previous options
+                                districtSelect.innerHTML = '<option value="">-- Select District --</option>';
+
+                                if (districts[selectedState]) {
+                                    districts[selectedState].forEach(district => {
+                                        const option = document.createElement("option");
+                                        option.value = district;
+                                        option.textContent = district;
+                                        districtSelect.appendChild(option);
+                                    });
+                                }
+                            }
+                        </script>
+
                     </div>
                 </div>
+
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" rows="4" cols="50" style="resize: none;"
+                            placeholder="Enter full address..."></textarea>
+                    </div>
+                </div>
+
+
 
                 <div class="form-section">
                     <h3>Additional Information</h3>
@@ -412,22 +885,7 @@
                         }
                     </style>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="colour">Colour:</label>
-                            <input type="text" id="colour" name="colour">
-                        </div>
 
-                        <div class="form-group">
-                            <label for="additional_height">Height:</label>
-                            <input type="text" id="additional_height" name="additional_height">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="additional_location">Location:</label>
-                            <input type="text" id="additional_location" name="additional_location">
-                        </div>
-                    </div>
                 </div>
 
                 <div class="form-row">
@@ -440,17 +898,17 @@
 
     <script>
         const API_BASE_URL = 'https://2a8a-2401-4900-889d-a819-38bb-7f9a-34ca-e3df.ngrok-free.app/api/profiles';
-    
+
         document.addEventListener('DOMContentLoaded', function () {
             const casteInput = document.getElementById('caste');
             const tribeSelect = document.getElementById('tribe-select');
             const form = document.getElementById('matrimonyForm');
             const photoFile = document.getElementById('photoFile');
             const photoPreview = document.getElementById('photoPreview');
-    
+
             let editMode = false;
             let editProfileId = null;
-    
+
             // Photo upload handling
             photoFile.addEventListener('change', function (e) {
                 const file = e.target.files[0];
@@ -477,7 +935,9 @@
                     reader.readAsDataURL(file);
                 }
             });
-    
+
+
+
             // Edit mode handling
             if (window.location.search.includes('edit=true')) {
                 const editData = JSON.parse(localStorage.getItem('editProfileData'));
@@ -507,7 +967,7 @@
                     }
                 }
             }
-    
+
             casteInput.addEventListener('input', function () {
                 const casteValue = this.value.toLowerCase();
                 console.log('Caste input:', casteValue);
@@ -520,22 +980,22 @@
                     console.log('Tribe dropdown disabled');
                 }
             });
-    
+
             form.addEventListener('submit', async function (e) {
                 e.preventDefault();
                 console.log('Form submit triggered');
-    
+
                 try {
                     const submitBtn = form.querySelector('button[type="submit"]');
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Saving...';
-    
+
                     const formData = new FormData(form);
                     const imageFile = photoFile.files[0];
-    
+
                     // Create FormData that matches your ProfileRequestDTO
                     const requestFormData = new FormData();
-    
+
                     // Append all fields that match your DTO
                     requestFormData.append('caste', formData.get('caste'));
                     requestFormData.append('relationship', formData.get('relationship'));
@@ -544,14 +1004,14 @@
                     requestFormData.append('fatherOccupation', formData.get('father_occupation'));
                     requestFormData.append('motherName', formData.get('mother_name'));
                     requestFormData.append('motherOccupation', formData.get('mother_occupation'));
-    
+
                     // Handle date/time combination
                     const dob = formData.get('dob');
                     const birthTime = formData.get('birth_time') || '00:00:00';
                     if (dob) {
                         requestFormData.append('dateOfBirth', `${dob}T${birthTime}`);
                     }
-    
+
                     // Append other fields
                     requestFormData.append('height', formData.get('height'));
                     requestFormData.append('star', formData.get('star'));
@@ -565,22 +1025,22 @@
                     requestFormData.append('sistersInfo', formData.get('sisters'));
                     requestFormData.append('nativePlace', formData.get('native_place'));
                     requestFormData.append('currentResidence', formData.get('current_residence'));
-    
+
                     // Append the image with the correct parameter name
                     if (imageFile) {
                         requestFormData.append('image', imageFile);
                     }
-    
+
                     // Updated URL for edit mode to match backend endpoint
                     const url = editMode
                         ? `${API_BASE_URL}/update/profile`  // Matches your @PutMapping
                         : API_BASE_URL;  // Keep POST endpoint as is
-    
+
                     const method = editMode ? 'PUT' : 'POST';
-    
+
                     console.log(`Sending ${method} request to:`, url);
                     console.log('Request payload:', Object.fromEntries(requestFormData));
-    
+
                     const response = await fetch(url, {
                         method: method,
                         headers: {
@@ -588,18 +1048,18 @@
                         },
                         body: requestFormData
                     });
-    
+
                     console.log('Raw response:', response);
-    
+
                     if (!response.ok) {
                         const errorData = await response.json().catch(() => ({}));
                         console.error('Backend error response:', errorData);
                         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
                     }
-    
+
                     const result = await response.json();
                     console.log('Backend success response:', result);
-    
+
                     if (result) {
                         alert(`Profile ${editMode ? 'updated' : 'created'} successfully!`);
                         if (!editMode) form.reset();
