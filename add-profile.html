@@ -140,14 +140,12 @@
         <div class="sidebar">
             <h2>Dashboard</h2>
             <ul>
-                <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-                <li class="active"><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add
-                            Profile</span></a></li>
+                <li><a href="home.html"><i class="fas fa-home"></i><span> Home</span></a></li>
+                <li class="active"><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add Profile</span></a></li>
                 <li><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit Profiles</span></a></li>
-                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a>
-                </li>
-                <li><a href="analytics.html"><i class="fas fa-chart-line"></i><span> Analytics</span></a></li>
-                <li><a href="settings.html"><i class="fas fa-cog"></i><span> Settings</span></a></li>
+                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a></li>
+                <li><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active Users</span></a></li>
+                <!-- <li><a href="settings.html"><i class="fas fa-cog"></i><span> Settings</span></a></li> -->
                 <li><a href="user.html"><i class="fas fa-user-cog"></i><span> Users</span></a></li>
                 <li><a href="addBanner.html"><i class="fa-solid fa-images"></i><span> Add Banner</span></a></li>
                 <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span> View Banner</span></a></li>
@@ -385,69 +383,66 @@
 
                         <div class="form-group">
                             <label for="birth_place">Place of Birth:</label>
-                            <input type="text" id="birth_place" name="birth_place">
+                            <input type="text" id="birth_place" name="place_birth">
                         </div>
 
-                        <div class="form-group">
-                            <label for="birth_time">Time of Birth: (24hrs format)</label>
-                            <input type="time" id="birth_time" name="birth_time">
-                        </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="height">7. Height(in ft): <span style="color: red;">*</span></label>
                             <select id="height" name="height" required>
-                                <option value="91">3'0"</option>
-                                <option value="93">3'1"</option>
-                                <option value="95">3'2"</option>
-                                <option value="97">3'3"</option>
-                                <option value="99">3'4"</option>
-                                <option value="102">3'5"</option>
-                                <option value="104">3'6"</option>
-                                <option value="106">3'7"</option>
-                                <option value="108">3'8"</option>
-                                <option value="110">3'9"</option>
-                                <option value="112">3'10"</option>
-                                <option value="114">3'11"</option>
-                                <option value="117">4'0"</option>
-                                <option value="119">4'1"</option>
-                                <option value="121">4'2"</option>
-                                <option value="123">4'3"</option>
-                                <option value="125">4'4"</option>
-                                <option value="127">4'5"</option>
-                                <option value="130">4'6"</option>
-                                <option value="132">4'7"</option>
-                                <option value="134">4'8"</option>
-                                <option value="136">4'9"</option>
-                                <option value="138">4'10"</option>
-                                <option value="140">4'11"</option>
-                                <option value="142">5'0"</option>
-                                <option value="144">5'1"</option>
-                                <option value="147">5'2"</option>
-                                <option value="149">5'3"</option>
-                                <option value="151">5'4"</option>
-                                <option value="153">5'5"</option>
-                                <option value="155">5'6"</option>
-                                <option value="157">5'7"</option>
-                                <option value="160">5'8"</option>
-                                <option value="162">5'9"</option>
-                                <option value="164">5'10"</option>
-                                <option value="166">5'11"</option>
-                                <option value="168">6'0"</option>
-                                <option value="170">6'1"</option>
-                                <option value="173">6'2"</option>
-                                <option value="175">6'3"</option>
-                                <option value="177">6'4"</option>
-                                <option value="179">6'5"</option>
-                                <option value="181">6'6"</option>
-                                <option value="183">6'7"</option>
-                                <option value="185">6'8"</option>
-                                <option value="188">6'9"</option>
-                                <option value="190">6'10"</option>
-                                <option value="192">6'11"</option>
-                                <option value="195">7'0"</option>
+                                <option value="3'0&quot;">3'0"</option>
+                                <option value="3'1&quot;">3'1"</option>
+                                <option value="3'2&quot;">3'2"</option>
+                                <option value="3'3&quot;">3'3"</option>
+                                <option value="3'4&quot;">3'4"</option>
+                                <option value="3'5&quot;">3'5"</option>
+                                <option value="3'6&quot;">3'6"</option>
+                                <option value="3'7&quot;">3'7"</option>
+                                <option value="3'8&quot;">3'8"</option>
+                                <option value="3'9&quot;">3'9"</option>
+                                <option value="3'10&quot;">3'10"</option>
+                                <option value="3'11&quot;">3'11"</option>
+                                <option value="4'0&quot;">4'0"</option>
+                                <option value="4'1&quot;">4'1"</option>
+                                <option value="4'2&quot;">4'2"</option>
+                                <option value="4'3&quot;">4'3"</option>
+                                <option value="4'4&quot;">4'4"</option>
+                                <option value="4'5&quot;">4'5"</option>
+                                <option value="4'6&quot;">4'6"</option>
+                                <option value="4'7&quot;">4'7"</option>
+                                <option value="4'8&quot;">4'8"</option>
+                                <option value="4'9&quot;">4'9"</option>
+                                <option value="4'10&quot;">4'10"</option>
+                                <option value="4'11&quot;">4'11"</option>
+                                <option value="5'0&quot;">5'0"</option>
+                                <option value="5'1&quot;">5'1"</option>
+                                <option value="5'2&quot;">5'2"</option>
+                                <option value="5'3&quot;">5'3"</option>
+                                <option value="5'4&quot;">5'4"</option>
+                                <option value="5'5&quot;">5'5"</option>
+                                <option value="5'6&quot;">5'6"</option>
+                                <option value="5'7&quot;">5'7"</option>
+                                <option value="5'8&quot;">5'8"</option>
+                                <option value="5'9&quot;">5'9"</option>
+                                <option value="5'10&quot;">5'10"</option>
+                                <option value="5'11&quot;">5'11"</option>
+                                <option value="6'0&quot;">6'0"</option>
+                                <option value="6'1&quot;">6'1"</option>
+                                <option value="6'2&quot;">6'2"</option>
+                                <option value="6'3&quot;">6'3"</option>
+                                <option value="6'4&quot;">6'4"</option>
+                                <option value="6'5&quot;">6'5"</option>
+                                <option value="6'6&quot;">6'6"</option>
+                                <option value="6'7&quot;">6'7"</option>
+                                <option value="6'8&quot;">6'8"</option>
+                                <option value="6'9&quot;">6'9"</option>
+                                <option value="6'10&quot;">6'10"</option>
+                                <option value="6'11&quot;">6'11"</option>
+                                <option value="7'0&quot;">7'0"</option>
                             </select>
+
                         </div>
 
                         <div class="form-group">
@@ -686,7 +681,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="brothers">16. Brothers (Married/Unmarried):</label>
-                            <select id="brothers" name="brothers" required>
+                            <select id="brothers" name="brothersInfo">
                                 <option value="">-- Select Option --</option>
                                 <option value="Married">Married</option>
                                 <option value="Unmarried">Unmarried</option>
@@ -696,7 +691,7 @@
 
                         <div class="form-group">
                             <label for="brothers_education">Education:</label>
-                            <select id="education" name="education">
+                            <select id="education" name="brotherEducation">
                                 <option value="">-- Select Education --</option>
                                 <option value="No Formal Education">No Formal Education</option>
                                 <option value="Primary School">Primary School (1st–5th Class)</option>
@@ -732,7 +727,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="sisters">17. Sisters (Married/Unmarried):</label>
-                            <select id="brothers" name="brothers" required>
+                            <select id="brothers" name="sistersInfo">
                                 <option value="">-- Select Option --</option>
                                 <option value="Married">Married</option>
                                 <option value="Unmarried">Unmarried</option>
@@ -741,7 +736,7 @@
 
                         <div class="form-group">
                             <label for="sisters_education">Education:</label>
-                            <select id="education" name="education">
+                            <select id="education" name="sisterEducation">
                                 <option value="">-- Select Education --</option>
                                 <option value="No Formal Education">No Formal Education</option>
                                 <option value="Primary School">Primary School (1st–5th Class)</option>
@@ -850,13 +845,13 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="additional_education">Education:</label>
-                            <textarea id="additional_education" name="additional_education"
+                            <textarea id="additional_education" name="optional_education"
                                 class="fixed-textarea"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="additional_occupation">Occupation:</label>
-                            <textarea id="additional_occupation" name="additional_occupation"
+                            <textarea id="additional_occupation" name="optional_occupation"
                                 class="fixed-textarea"></textarea>
                         </div>
                     </div>
@@ -897,149 +892,183 @@
 
 
     <script>
-        const API_BASE_URL = 'https://2a8a-2401-4900-889d-a819-38bb-7f9a-34ca-e3df.ngrok-free.app/api/profiles';
+        const API_BASE_URL = 'https://88da-106-200-144-132.ngrok-free.app/api/profiles';
 
         document.addEventListener('DOMContentLoaded', function () {
+            // DOM Elements
+            const form = document.getElementById('matrimonyForm');
             const casteInput = document.getElementById('caste');
             const tribeSelect = document.getElementById('tribe-select');
-            const form = document.getElementById('matrimonyForm');
             const photoFile = document.getElementById('photoFile');
             const photoPreview = document.getElementById('photoPreview');
+            const submitBtn = form.querySelector('button[type="submit"]');
 
+            // State variables
             let editMode = false;
             let editProfileId = null;
 
-            // Photo upload handling
-            photoFile.addEventListener('change', function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    console.log('Photo selected:', file.name);
-                    const validTypes = ['image/jpeg', 'image/png'];
-                    if (!validTypes.includes(file.type)) {
-                        alert('Please upload a JPG or PNG image');
-                        photoFile.value = '';
-                        console.warn('Invalid image type:', file.type);
-                        return;
-                    }
-                    if (file.size > 2 * 1024 * 1024) {
-                        alert('Image must be less than 2MB');
-                        photoFile.value = '';
-                        console.warn('Image too large:', file.size);
-                        return;
-                    }
-                    const reader = new FileReader();
-                    reader.onload = function (event) {
-                        photoPreview.src = event.target.result;
-                        console.log('Photo preview loaded');
-                    };
-                    reader.readAsDataURL(file);
+            // Initialize form based on edit mode
+            function initializeForm() {
+                // Photo upload handling
+                photoFile.addEventListener('change', handlePhotoUpload);
+
+                // Caste-Tribe relationship
+                casteInput.addEventListener('input', handleCasteChange);
+
+                // Check for edit mode
+                if (window.location.search.includes('edit=true')) {
+                    setupEditMode();
                 }
-            });
 
+                // Form submission
+                form.addEventListener('submit', handleFormSubmit);
+            }
 
+            // Handle photo upload
+            function handlePhotoUpload(e) {
+                const file = e.target.files[0];
+                if (!file) return;
 
-            // Edit mode handling
-            if (window.location.search.includes('edit=true')) {
+                // Validate file type
+                const validTypes = ['image/jpeg', 'image/png'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Please upload a JPG or PNG image');
+                    photoFile.value = '';
+                    return;
+                }
+
+                // Validate file size
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('Image must be less than 2MB');
+                    photoFile.value = '';
+                    return;
+                }
+
+                // Preview image
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    photoPreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Handle caste selection change
+            function handleCasteChange() {
+                const isOC = this.value.toLowerCase() === 'oc';
+                tribeSelect.disabled = !isOC;
+                if (!isOC) tribeSelect.selectedIndex = -1;
+            }
+
+            // Setup edit mode
+            function setupEditMode() {
                 const editData = JSON.parse(localStorage.getItem('editProfileData'));
-                if (editData) {
-                    console.log('Edit mode enabled. Profile ID:', editData.id);
-                    editMode = true;
-                    editProfileId = editData.id;
-                    for (const [key, value] of Object.entries(editData)) {
-                        const field = document.querySelector(`[name="${key}"]`);
-                        if (field) {
-                            if (key === 'dateOfBirth' && value) {
-                                const date = new Date(value);
-                                field.value = date.toISOString().split('T')[0];
-                            } else if (key === 'birth_time' && value) {
-                                const time = new Date(value);
-                                field.value = time.toTimeString().substring(0, 5);
-                            } else {
-                                field.value = value;
-                            }
-                        }
+                if (!editData) return;
+
+                console.log('Initializing edit mode with data:', editData);
+                editMode = true;
+                editProfileId = editData.id;
+
+                // Field mappings between form names and backend names
+                const fieldMappings = {
+                    // Frontend: Backend
+                    'father_name': 'fatherName',
+                    'father_occupation': 'fatherOccupation',
+                    'mother_name': 'motherName',
+                    'mother_occupation': 'motherOccupation',
+                    'income': 'monthlyIncome',
+                    'brothers': 'brothersInfo',
+                    'sisters': 'sistersInfo',
+                    'native_place': 'nativePlace',
+                    'current_residence': 'currentResidence',
+                    'dob': 'dateOfBirth'
+                };
+
+                // Populate form fields
+                Object.entries(editData).forEach(([key, value]) => {
+                    if (key === 'dateOfBirth' && value) {
+                        const date = new Date(value);
+                        const dateField = document.querySelector('[name="dob"]');
+                        if (dateField) dateField.value = date.toISOString().split('T')[0];
+
+                        const timePart = value.includes('T') ? value.split('T')[1].substring(0, 5) : '00:00';
+                        const timeField = document.querySelector('[name="birth_time"]');
+                        if (timeField) timeField.value = timePart;
+                        return;
                     }
-                    if (editData.caste?.toLowerCase() === 'oc') {
-                        tribeSelect.disabled = false;
+
+                    // Find the matching form field
+                    const formFieldName = Object.keys(fieldMappings).find(
+                        k => fieldMappings[k] === key
+                    ) || key;
+
+                    const field = document.querySelector(`[name="${formFieldName}"]`);
+                    if (field && value !== null && value !== undefined) {
+                        field.value = value;
                     }
-                    if (editData.imagePath) {
-                        photoPreview.src = `${API_BASE_URL}/uploads/${editData.imagePath}`;
-                    }
+                });
+
+                // Handle special cases
+                if (editData.caste?.toLowerCase() === 'oc') {
+                    tribeSelect.disabled = false;
+                }
+
+                if (editData.imagePath) {
+                    photoPreview.src = `${API_BASE_URL}/uploads/${editData.imagePath}`;
                 }
             }
 
-            casteInput.addEventListener('input', function () {
-                const casteValue = this.value.toLowerCase();
-                console.log('Caste input:', casteValue);
-                if (casteValue === 'oc') {
-                    tribeSelect.disabled = false;
-                    console.log('Tribe dropdown enabled');
-                } else {
-                    tribeSelect.disabled = true;
-                    tribeSelect.selectedIndex = -1;
-                    console.log('Tribe dropdown disabled');
-                }
-            });
-
-            form.addEventListener('submit', async function (e) {
+            // Handle form submission
+            async function handleFormSubmit(e) {
                 e.preventDefault();
-                console.log('Form submit triggered');
 
                 try {
-                    const submitBtn = form.querySelector('button[type="submit"]');
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Saving...';
 
                     const formData = new FormData(form);
-                    const imageFile = photoFile.files[0];
-
-                    // Create FormData that matches your ProfileRequestDTO
                     const requestFormData = new FormData();
 
-                    // Append all fields that match your DTO
-                    requestFormData.append('caste', formData.get('caste'));
-                    requestFormData.append('relationship', formData.get('relationship'));
-                    requestFormData.append('name', formData.get('name'));
-                    requestFormData.append('fatherName', formData.get('father_name'));
-                    requestFormData.append('fatherOccupation', formData.get('father_occupation'));
-                    requestFormData.append('motherName', formData.get('mother_name'));
-                    requestFormData.append('motherOccupation', formData.get('mother_occupation'));
-
-                    // Handle date/time combination
-                    const dob = formData.get('dob');
-                    const birthTime = formData.get('birth_time') || '00:00:00';
-                    if (dob) {
-                        requestFormData.append('dateOfBirth', `${dob}T${birthTime}`);
+                    // Add profile ID in edit mode
+                    if (editMode) {
+                        requestFormData.append('id', editProfileId);
                     }
 
-                    // Append other fields
-                    requestFormData.append('height', formData.get('height'));
-                    requestFormData.append('star', formData.get('star'));
-                    requestFormData.append('zodiac', formData.get('zodiac'));
-                    requestFormData.append('tribe', formData.get('tribe'));
-                    requestFormData.append('education', formData.get('education'));
-                    requestFormData.append('occupation', formData.get('occupation'));
-                    requestFormData.append('monthlyIncome', formData.get('income'));
-                    requestFormData.append('assets', formData.get('assets'));
-                    requestFormData.append('brothersInfo', formData.get('brothers'));
-                    requestFormData.append('sistersInfo', formData.get('sisters'));
-                    requestFormData.append('nativePlace', formData.get('native_place'));
-                    requestFormData.append('currentResidence', formData.get('current_residence'));
+                    // Field mappings for backend
+                    const backendFieldMappings = {
+                        'father_name': 'fatherName',
+                        'father_occupation': 'fatherOccupation',
+                        'mother_name': 'motherName',
+                        'mother_occupation': 'motherOccupation',
+                        'income': 'monthlyIncome',
+                        'brothers': 'brothersInfo',
+                        'sisters': 'sistersInfo',
+                        'native_place': 'nativePlace',
+                        'current_residence': 'currentResidence'
+                    };
 
-                    // Append the image with the correct parameter name
-                    if (imageFile) {
-                        requestFormData.append('image', imageFile);
+                    // Process all form fields
+                    formData.forEach((value, key) => {
+                        if (key === 'dob' && value) {
+                            const time = formData.get('birth_time') || '00:00';
+                            requestFormData.append('dateOfBirth', `${value}T${time}`);
+                        }
+                        else if (key !== 'birth_time') {
+                            const backendFieldName = backendFieldMappings[key] || key;
+                            requestFormData.append(backendFieldName, value);
+                        }
+                    });
+
+                    // Handle file upload
+                    if (photoFile.files[0]) {
+                        requestFormData.append('image', photoFile.files[0]);
                     }
 
-                    // Updated URL for edit mode to match backend endpoint
-                    const url = editMode
-                        ? `${API_BASE_URL}/update/profile`  // Matches your @PutMapping
-                        : API_BASE_URL;  // Keep POST endpoint as is
-
+                    // API call configuration
+                    const url = editMode ? `${API_BASE_URL}/update/profile` : API_BASE_URL;
                     const method = editMode ? 'PUT' : 'POST';
 
                     console.log(`Sending ${method} request to:`, url);
-                    console.log('Request payload:', Object.fromEntries(requestFormData));
+                    console.log('Request data:', Object.fromEntries(requestFormData));
 
                     const response = await fetch(url, {
                         method: method,
@@ -1049,34 +1078,32 @@
                         body: requestFormData
                     });
 
-                    console.log('Raw response:', response);
-
                     if (!response.ok) {
                         const errorData = await response.json().catch(() => ({}));
-                        console.error('Backend error response:', errorData);
                         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
                     }
 
                     const result = await response.json();
-                    console.log('Backend success response:', result);
+                    showSuccessMessage();
 
-                    if (result) {
-                        alert(`Profile ${editMode ? 'updated' : 'created'} successfully!`);
-                        if (!editMode) form.reset();
-                        localStorage.removeItem('editProfileData');
-                        window.location.href = 'view-profiles.html';
-                    } else {
-                        throw new Error('Empty result from backend');
-                    }
                 } catch (error) {
-                    console.error('Error occurred:', error);
-                    alert('An error occurred: ' + error.message);
+                    console.error('Error:', error);
+                    alert('Error: ' + error.message);
                 } finally {
-                    const submitBtn = form.querySelector('button[type="submit"]');
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Save Profile';
                 }
-            });
+            }
+
+            // Show success message and redirect
+            function showSuccessMessage() {
+                alert(`Profile ${editMode ? 'updated' : 'created'} successfully!`);
+                localStorage.removeItem('editProfileData');
+                window.location.href = 'view-profiles.html';
+            }
+
+            // Initialize the form
+            initializeForm();
         });
     </script>
 

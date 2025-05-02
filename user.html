@@ -270,12 +270,12 @@
     <div class="sidebar">
         <h2>Dashboard</h2>
         <ul>
-            <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li><a href="home.html"><i class="fas fa-home"></i><span> Home</span></a></li>
             <li><a href="add-profile.html"><i class="fas fa-user-plus"></i><span>Add Profile</span></a></li>
             <li><a href="view-profiles.html"><i class="fas fa-users"></i><span>View/Edit Profiles</span></a></li>
             <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span>Manage Enquiries</span></a></li>
-            <li><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
-            <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+            <li><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active Status</span></a></li>
+            <!-- <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li> -->
             <li class="active"><a href="user.html"><i class="fas fa-user-cog"></i><span>Users</span></a></li>
             <li><a href="addBanner.html"><i class="fa-solid fa-images"></i><span> Add Banner</span></a></li>
             <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span> View Banner</span></a></li>
@@ -356,7 +356,7 @@
             console.log("Attempting to fetch user data...");
 
             try {
-                const response = await fetch('https://2a8a-2401-4900-889d-a819-38bb-7f9a-34ca-e3df.ngrok-free.app/api/profiles/get/all/logins', {
+                const response = await fetch('https://4ddd-2401-4900-889d-8d9e-b4a5-2d10-4a34-b143.ngrok-free.app/api/profiles/get/all/logins', {
                     cache: "no-cache",
                     headers: {
                         'Accept': 'application/json', 

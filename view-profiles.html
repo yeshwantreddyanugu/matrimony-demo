@@ -349,14 +349,12 @@
         <div class="sidebar">
             <h2>Dashboard</h2>
             <ul>
-                <li><a href="home.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
+                <li><a href="home.html"><i class="fas fa-home"></i><span> Home</span></a></li>
                 <li><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add Profile</span></a></li>
-                <li class="active"><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit
-                            Profiles</span></a></li>
-                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a>
-                </li>
-                <li><a href="analytics.html"><i class="fas fa-chart-line"></i><span> Analytics</span></a></li>
-                <li><a href="settings.html"><i class="fas fa-cog"></i><span> Settings</span></a></li>
+                <li class="active"><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit Profiles</span></a></li>
+                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a></li>
+                <li><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active Users</span></a></li>
+                <!-- <li><a href="settings.html"><i class="fas fa-cog"></i><span> Settings</span></a></li> -->
                 <li><a href="user.html"><i class="fas fa-user-cog"></i><span> Users</span></a></li>
                 <li><a href="addBanner.html"><i class="fa-solid fa-images"></i><span> Add Banner</span></a></li>
                 <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span> View Banner</span></a></li>
@@ -371,10 +369,75 @@
             <div class="caste-selector">
                 <label for="casteFilter">Filter by Caste:</label>
                 <select id="casteFilter">
-                    <option value="bc">BC</option>
-                    <option value="sc">SC</option>
-                    <option value="st">ST</option>
-                    <option value="oc">Open Category</option>
+                    <option value="">-- Select Caste --</option>
+
+                    <!-- OC -->
+                    <optgroup label="Open Category">
+                        <option value="OC" selected>OC (Open Category)</option>
+                    </optgroup>
+
+                    <!-- BC Categories -->
+                    <optgroup label="BC-A">
+                        <option value="BC-A (Munnur Kapu)">BC-A (Munnur Kapu)</option>
+                        <option value="BC-A (Goud)">BC-A (Goud)</option>
+                        <option value="BC-A (Gangaputra/Jalari)">BC-A (Gangaputra/Jalari)</option>
+                        <option value="BC-A (Kummari)">BC-A (Kummari)</option>
+                        <option value="BC-A (Vaddera)">BC-A (Vaddera)</option>
+                        <option value="BC-A (Besta)">BC-A (Besta)</option>
+                        <option value="BC-A (Are Kshatriya)">BC-A (Are Kshatriya)</option>
+                    </optgroup>
+
+                    <optgroup label="BC-B">
+                        <option value="BC-B (Patel)">BC-B (Patel)</option>
+                        <option value="BC-B (Yadav/Golla)">BC-B (Yadav/Golla)</option>
+                        <option value="BC-B (Mudiraj/Mutrasi)">BC-B (Mudiraj/Mutrasi)</option>
+                        <option value="BC-B (Goud)">BC-B (Goud – toddy tappers)</option>
+                        <option value="BC-B (Koppula Velama)">BC-B (Koppula Velama)</option>
+                        <option value="BC-B (Thogata Veera Kshatriya)">BC-B (Thogata Veera Kshatriya)</option>
+                    </optgroup>
+
+                    <optgroup label="BC-C">
+                        <option value="BC-C (Christian converts)">BC-C (Christian converts)</option>
+                    </optgroup>
+
+                    <optgroup label="BC-D">
+                        <option value="BC-D (Kapu)">BC-D (Kapu)</option>
+                        <option value="BC-D (Telaga)">BC-D (Telaga)</option>
+                        <option value="BC-D (Balija)">BC-D (Balija)</option>
+                        <option value="BC-D (Munnuru Kapu)">BC-D (Munnuru Kapu)</option>
+                        <option value="BC-D (Kamma)">BC-D (Kamma)</option>
+                        <option value="BC-D (Reddy)">BC-D (Reddy)</option>
+                        <option value="BC-D (Velama)">BC-D (Velama)</option>
+                    </optgroup>
+
+                    <optgroup label="BC-E (Muslim BC)">
+                        <option value="BC-E (Shaik)">BC-E (Shaik)</option>
+                        <option value="BC-E (Syed)">BC-E (Syed)</option>
+                        <option value="BC-E (Qureshi)">BC-E (Qureshi/Butcher)</option>
+                        <option value="BC-E (Ansari)">BC-E (Ansari – weavers)</option>
+                    </optgroup>
+
+                    <!-- SC Categories -->
+                    <optgroup label="Scheduled Castes (SC)">
+                        <option value="SC (Madiga)">SC (Madiga)</option>
+                        <option value="SC (Mala)">SC (Mala)</option>
+                        <option value="SC (Relli)">SC (Relli)</option>
+                        <option value="SC (Adi Andhra)">SC (Adi Andhra)</option>
+                        <option value="SC (Arunthathiyar)">SC (Arunthathiyar)</option>
+                    </optgroup>
+
+                    <!-- ST Categories -->
+                    <optgroup label="Scheduled Tribes (ST)">
+                        <option value="ST (Lambada)">ST (Lambada/Banjara)</option>
+                        <option value="ST (Koya)">ST (Koya)</option>
+                        <option value="ST (Yerukala)">ST (Yerukala)</option>
+                        <option value="ST (Chenchu)">ST (Chenchu)</option>
+                        <option value="ST (Gond)">ST (Gond)</option>
+                    </optgroup>
+
+                    
+
+                    <!-- Others -->
                     <option value="other">Other Castes</option>
                 </select>
             </div>
@@ -429,23 +492,23 @@
 
     <script>
         // Base URL for your backend API
-        const API_BASE_URL = 'https://2a8a-2401-4900-889d-a819-38bb-7f9a-34ca-e3df.ngrok-free.app';
+        const API_BASE_URL = 'https://4ddd-2401-4900-889d-8d9e-b4a5-2d10-4a34-b143.ngrok-free.app';
         console.log('API Base URL:', API_BASE_URL);
-    
+
         // Current profiles data in memory for client-side operations
         let currentProfiles = [];
-    
+
         // Function to show toast notification
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.className = `toast ${type} show`;
-            
+
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
         }
-    
+
         // Function to fetch profiles from backend
         async function fetchProfiles(caste = 'oc') {
             console.log('Starting to fetch profiles...');
@@ -453,7 +516,7 @@
             try {
                 const endpoint = `${API_BASE_URL}/api/profiles/by-caste/${caste}`;
                 console.log('Fetching from endpoint:', endpoint);
-    
+
                 const response = await fetch(endpoint, {
                     method: 'GET',
                     headers: {
@@ -462,15 +525,15 @@
                         'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
                     }
                 });
-    
+
                 console.log('Response status:', response.status);
-    
+
                 if (!response.ok) {
                     const errorText = await response.text();
                     console.error('Error response:', errorText);
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-    
+
                 const data = await response.json();
                 console.log('Successfully fetched profiles:', data);
                 currentProfiles = data; // Store for client-side operations
@@ -483,7 +546,7 @@
                 hideLoading();
             }
         }
-    
+
         // Function to fetch all profiles
         async function fetchAllProfiles() {
             console.log('Fetching all profiles...');
@@ -491,7 +554,7 @@
             try {
                 const endpoint = `${API_BASE_URL}/api/profiles`;
                 console.log('Fetching from endpoint:', endpoint);
-    
+
                 const response = await fetch(endpoint, {
                     method: 'GET',
                     headers: {
@@ -499,11 +562,11 @@
                         'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
                     }
                 });
-    
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-    
+
                 const data = await response.json();
                 console.log('Successfully fetched all profiles:', data);
                 currentProfiles = data; // Store for client-side operations
@@ -516,14 +579,14 @@
                 hideLoading();
             }
         }
-    
+
         // Function to perform client-side search
         function performSearch(query) {
             console.log(`Performing client-side search for: "${query}"`);
             if (!query) {
                 return currentProfiles;
             }
-    
+
             const searchTerm = query.toLowerCase();
             const filtered = currentProfiles.filter(profile => {
                 const searchFields = [
@@ -538,24 +601,24 @@
                     profile.education,
                     profile.occupation
                 ].map(field => field ? field.toString().toLowerCase() : '').join(' ');
-                
+
                 return searchFields.includes(searchTerm);
             });
-            
+
             if (filtered.length === 0) {
                 showToast('No profiles found matching your search', 'error');
             }
-            
+
             return filtered;
         }
-    
+
         // Function to delete profile from backend
         async function deleteProfileFromBackend(profileId) {
             console.log(`Attempting to delete profile with ID: ${profileId}`);
             try {
-                const endpoint = `${API_BASE_URL}/api/profiles/${profileId}`;
+                const endpoint = `${API_BASE_URL}/api/profiles/delete/profile/${profileId}`;
                 console.log('DELETE request to:', endpoint);
-    
+
                 const response = await fetch(endpoint, {
                     method: 'DELETE',
                     headers: {
@@ -563,23 +626,23 @@
                         'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
                     }
                 });
-    
+
                 console.log('Delete response status:', response.status);
-    
+
                 if (!response.ok) {
                     const errorText = await response.text();
                     console.error('Delete error response:', errorText);
                 }
-    
+
                 return response.ok;
             } catch (error) {
                 console.error('Error in deleteProfileFromBackend:', error);
                 return false;
             }
         }
-    
+
         // Main function to load and display profiles
-        async function loadProfiles(caste = 'bc') {
+        async function loadProfiles(caste = 'OC') {
             console.log('Loading profiles...');
             try {
                 const profiles = caste === 'all' ? await fetchAllProfiles() : await fetchProfiles(caste);
@@ -589,13 +652,13 @@
                 console.error('Error in loadProfiles:', error);
             }
         }
-    
+
         // Function to render profiles in table
         function renderProfiles(profileData = []) {
             console.log('Rendering profiles:', profileData);
             const tableBody = document.getElementById('profilesTableBody');
             tableBody.innerHTML = '';
-    
+
             if (profileData.length === 0) {
                 console.log('No profiles found to render');
                 tableBody.innerHTML = `
@@ -607,7 +670,7 @@
                 `;
                 return;
             }
-    
+
             console.log(`Rendering ${profileData.length} profiles`);
             profileData.forEach((profile, index) => {
                 console.log(`Rendering profile ${index + 1}:`, profile);
@@ -634,84 +697,111 @@
                 tableBody.appendChild(row);
             });
         }
-    
+
         // View profile details in modal
         function viewProfileDetails(index) {
-            console.log(`Viewing profile details for index: ${index}`);
             const profile = currentProfiles[index];
-            console.log('Profile details:', profile);
-    
             const modal = document.getElementById('profileModal');
             const detailsContainer = document.getElementById('profileDetails');
-    
+
             document.getElementById('modalProfileName').textContent = profile.name || 'Profile Details';
-    
+
             detailsContainer.innerHTML = `
-                <div class="profile-photo-container">
-                    <img src="${profile.imageUrl || 'https://via.placeholder.com/150'}" 
-                         alt="Profile Photo" class="profile-photo">
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Relationship</div>
-                    <div class="detail-value">${profile.relationship || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Caste</div>
-                    <div class="detail-value">${profile.caste || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Tribe</div>
-                    <div class="detail-value">${profile.tribe || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Date of Birth</div>
-                    <div class="detail-value">${formatDate(profile.dateOfBirth) || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Height</div>
-                    <div class="detail-value">${profile.height || 'N/A'} cm</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Star/Zodiac</div>
-                    <div class="detail-value">${profile.star || 'N/A'} / ${profile.zodiac || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Father's Name</div>
-                    <div class="detail-value">${profile.fatherName || 'N/A'} (${profile.fatherOccupation || 'N/A'})</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Mother's Name</div>
-                    <div class="detail-value">${profile.motherName || 'N/A'} (${profile.motherOccupation || 'N/A'})</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Education</div>
-                    <div class="detail-value">${profile.education || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Occupation</div>
-                    <div class="detail-value">${profile.occupation || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Income</div>
-                    <div class="detail-value">${profile.monthlyIncome || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Native Place</div>
-                    <div class="detail-value">${profile.nativePlace || 'N/A'}</div>
-                </div>
-                <div class="detail-group">
-                    <div class="detail-label">Current Residence</div>
-                    <div class="detail-value">${profile.currentResidence || 'N/A'}</div>
-                </div>
-                <div class="detail-group" style="grid-column: span 2">
-                    <div class="detail-label">Additional Information</div>
-                    <div class="detail-value">${profile.assets || 'N/A'}</div>
-                </div>
-            `;
+        <div class="profile-photo-container">
+            <img src="${profile.imageUrl || 'https://via.placeholder.com/150'}" 
+                 alt="Profile Photo" class="profile-photo">
+        </div>
+        <div class="profile-section">
+            <h3>Basic Information</h3>
+            <div class="detail-group">
+                <div class="detail-label">Name</div>
+                <div class="detail-value">${profile.name || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Relationship</div>
+                <div class="detail-value">${profile.relationship || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Date of Birth</div>
+                <div class="detail-value">${formatDate(profile.dateOfBirth) || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Height</div>
+                <div class="detail-value">${profile.height || 'N/A'} cm</div>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Family Information</h3>
+            <div class="detail-group">
+                <div class="detail-label">Father's Name</div>
+                <div class="detail-value">${profile.fatherName || 'N/A'} (${profile.fatherOccupation || 'N/A'})</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Mother's Name</div>
+                <div class="detail-value">${profile.motherName || 'N/A'} (${profile.motherOccupation || 'N/A'})</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Brothers</div>
+                <div class="detail-value">${profile.brothersInfo !== "null" ? profile.brothersInfo : 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Sisters</div>
+                <div class="detail-value">${profile.sistersInfo !== "null" ? profile.sistersInfo : 'N/A'}</div>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Education & Career</h3>
+            <div class="detail-group">
+                <div class="detail-label">Education</div>
+                <div class="detail-value">${profile.education || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Occupation</div>
+                <div class="detail-value">${profile.occupation || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Monthly Income</div>
+                <div class="detail-value">${profile.monthlyIncome || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Assets</div>
+                <div class="detail-value">${profile.assets !== "NA" ? profile.assets : 'N/A'}</div>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Community & Location</h3>
+            <div class="detail-group">
+                <div class="detail-label">Caste</div>
+                <div class="detail-value">${profile.caste || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Tribe</div>
+                <div class="detail-value">${profile.tribe || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Star</div>
+                <div class="detail-value">${profile.star || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Zodiac</div>
+                <div class="detail-value">${profile.zodiac || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Native Place</div>
+                <div class="detail-value">${profile.nativePlace || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">Current Residence</div>
+                <div class="detail-value">${profile.currentResidence || 'N/A'}</div>
+            </div>
+        </div>
+    `;
             modal.style.display = 'flex';
-            console.log('Profile modal displayed');
         }
-    
+
         // Format date for display
         function formatDate(dateString) {
             if (!dateString) {
@@ -729,7 +819,7 @@
                 return dateString; // Return original if formatting fails
             }
         }
-    
+
         // Delete profile
         async function deleteProfile(profileId) {
             console.log(`Delete profile initiated for ID: ${profileId}`);
@@ -758,19 +848,19 @@
                 console.log('User cancelled deletion');
             }
         }
-    
+
         // Edit profile - passes data directly without additional API call
         function editProfile(profileData) {
             console.log('Editing profile:', profileData);
             try {
                 // Decode the HTML entities if needed
-                const decodedData = typeof profileData === 'string' ? 
-                    JSON.parse(profileData.replace(/&quot;/g, '"')) : 
+                const decodedData = typeof profileData === 'string' ?
+                    JSON.parse(profileData.replace(/&quot;/g, '"')) :
                     profileData;
-                
+
                 // Store the profile data in localStorage
                 localStorage.setItem('editProfileData', JSON.stringify(decodedData));
-                
+
                 // Navigate to the edit page
                 window.location.href = 'add-profile.html?edit=true';
             } catch (error) {
@@ -778,56 +868,56 @@
                 showToast('Error preparing profile for editing', 'error');
             }
         }
-    
+
         // Search functionality - client-side only
         function handleSearch() {
             const searchTerm = document.getElementById('searchInput').value.trim();
             console.log('Search initiated with term:', searchTerm);
-    
+
             if (currentProfiles.length === 0) {
                 showToast('Please wait while profiles are loading', 'error');
                 return;
             }
-    
+
             const results = performSearch(searchTerm);
             console.log('Search results:', results);
             renderProfiles(results);
         }
-    
+
         // Event listeners
         document.getElementById('searchBtn').addEventListener('click', handleSearch);
-    
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 handleSearch();
             }
         });
-    
-        document.getElementById('casteFilter').addEventListener('change', function() {
+
+        document.getElementById('casteFilter').addEventListener('change', function () {
             const selectedCaste = this.value;
             console.log('Caste filter changed to:', selectedCaste);
             loadProfiles(selectedCaste);
         });
-    
-        document.getElementById('closeModal').addEventListener('click', function() {
+
+        document.getElementById('closeModal').addEventListener('click', function () {
             console.log('Closing profile modal');
             document.getElementById('profileModal').style.display = 'none';
         });
-    
+
         // Helper functions
         function showLoading() {
             console.log('Showing loading indicator');
             document.getElementById('loadingIndicator').style.display = 'flex';
         }
-    
+
         function hideLoading() {
             console.log('Hiding loading indicator');
             document.getElementById('loadingIndicator').style.display = 'none';
         }
-    
+
         // Initialize the page
         console.log('Initializing page...');
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('DOM fully loaded');
             loadProfiles();
         });
