@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cache control headers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Logout - Admin Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/auth.js"></script>
@@ -15,16 +19,39 @@
     </div>
     
     <script>
-        // Countdown and redirect
-        let seconds = 5;
-        const countdown = setInterval(() => {
-            seconds--;
-            document.getElementById('countdown').textContent = seconds;
-            if (seconds <= 0) {
-                clearInterval(countdown);
-                window.location.href = 'index.html';
-            }
-        }, 1000);
+        // Clear all authentication data
+        function clearAuthData() {
+            // Clear localStorage
+            localStorage.removeItem('lastLogin');
+            localStorage.removeItem('loggedInEmail');
+            
+            // Clear sessionStorage
+            sessionStorage.clear();
+            
+            // Clear cookies
+            document.cookie.split(";").forEach(function(c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, 
+                    "=;expires=" + new Date().toUTCString() + ";path=/");
+            });
+            
+            // Force a hard reload of the login page to bypass cache
+            const loginUrl = 'index.html?logout=' + new Date().getTime();
+            
+            // Countdown and redirect with cache-busting
+            let seconds = 5;
+            const countdown = setInterval(() => {
+                seconds--;
+                document.getElementById('countdown').textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    // Force a hard redirect that bypasses cache
+                    window.location.replace(loginUrl);
+                }
+            }, 1000);
+        }
+        
+        // Call the cleanup function when page loads
+        document.addEventListener('DOMContentLoaded', clearAuthData);
     </script>
 </body>
 </html>

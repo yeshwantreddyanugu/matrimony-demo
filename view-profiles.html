@@ -351,8 +351,10 @@
             <ul>
                 <li><a href="home.html"><i class="fas fa-home"></i><span> Home</span></a></li>
                 <li><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add Profile</span></a></li>
-                <li class="active"><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit Profiles</span></a></li>
-                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a></li>
+                <li class="active"><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit
+                            Profiles</span></a></li>
+                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a>
+                </li>
                 <li><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active Users</span></a></li>
                 <!-- <li><a href="settings.html"><i class="fas fa-cog"></i><span> Settings</span></a></li> -->
                 <li><a href="user.html"><i class="fas fa-user-cog"></i><span> Users</span></a></li>
@@ -369,41 +371,50 @@
             <div class="caste-selector">
                 <label for="casteFilter">Filter by Caste:</label>
                 <select id="casteFilter">
-                    <option value="">-- Select Caste --</option>
+                    <option value="" >-- Select Caste --</option>
 
                     <!-- OC -->
                     <optgroup label="Open Category">
-                        <option value="OC" selected>OC (Open Category)</option>
+                        <option value="OC" selected >OC (Open Category)</option>
                     </optgroup>
 
                     <!-- BC Categories -->
                     <optgroup label="BC-A">
                         <option value="BC-A (Munnur Kapu)">BC-A (Munnur Kapu)</option>
-                        <option value="BC-A (Goud)">BC-A (Goud)</option>
-                        <option value="BC-A (Gangaputra/Jalari)">BC-A (Gangaputra/Jalari)</option>
-                        <option value="BC-A (Kummari)">BC-A (Kummari)</option>
-                        <option value="BC-A (Vaddera)">BC-A (Vaddera)</option>
-                        <option value="BC-A (Besta)">BC-A (Besta)</option>
-                        <option value="BC-A (Are Kshatriya)">BC-A (Are Kshatriya)</option>
+                        <option value="BC-A (Goud – in some regions)">BC-A (Goud – in some regions)</option>
+                        <option value="BC-A (Gangaputra)">BC-A (Gangaputra / Jalari)</option>
+                        <option value="BC-A (Kummari – potters)">BC-A (Kummari – potters)</option>
+                        <option value="BC-A (Vaddera – stone cutters)">BC-A (Vaddera – stone cutters)</option>
+                        <option value="BC-A (Besta – fishermen)">BC-A (Besta – fishermen)</option>
+                        <option value="BC-A (Kshatriya)">BC-A (Are / Arey Kshatriya)</option>
+                        <option value="BC-A (Kuruba – in some regions)">BC-A (Kuruba – in some regions)</option>
+                        <option value="BC-A (Rajaka – washermen)">BC-A (Rajaka – washermen)</option>
+                        <option value="BC-A (Kamsali – goldsmiths)">BC-A (Kamsali – goldsmiths)</option>
+                        <option value="BC-A (Sagara-Uppara–salt workers)">BC-A (Sagara / Uppara – salt workers)</option>
                     </optgroup>
 
                     <optgroup label="BC-B">
                         <option value="BC-B (Patel)">BC-B (Patel)</option>
-                        <option value="BC-B (Yadav/Golla)">BC-B (Yadav/Golla)</option>
-                        <option value="BC-B (Mudiraj/Mutrasi)">BC-B (Mudiraj/Mutrasi)</option>
-                        <option value="BC-B (Goud)">BC-B (Goud – toddy tappers)</option>
-                        <option value="BC-B (Koppula Velama)">BC-B (Koppula Velama)</option>
+                        <option value="BC-B (Yadav-Golla)">BC-B (Yadav / Golla)</option>
+                        <option value="BC-B (Mudiraj-Mutrasi)">BC-B (Mudiraj / Mutrasi)</option>
+                        <option value="BC-B (Goud – toddy tappers)">BC-B (Goud – toddy tappers)</option>
+                        <option value="BC-B (Gandla)">BC-B (Gandla)</option>
+                        <option value="BC-B (Kuruma – in Telangana)">BC-B (Kuruma – in Telangana)</option>
+                        <option value="BC-B (Koppula Velama – Telangana)">BC-B (Koppula Velama – Telangana) </option>
                         <option value="BC-B (Thogata Veera Kshatriya)">BC-B (Thogata Veera Kshatriya)</option>
+                        <option value="BC-B (Are Katikam-Kapu)">BC-B (Are Katikam / Kapu – in some areas)</option>
+
                     </optgroup>
 
                     <optgroup label="BC-C">
-                        <option value="BC-C (Christian converts)">BC-C (Christian converts)</option>
+                        <option value="BC-C (Christian)">BC-C (Christian converts from BC castes)</option>
                     </optgroup>
 
                     <optgroup label="BC-D">
                         <option value="BC-D (Kapu)">BC-D (Kapu)</option>
                         <option value="BC-D (Telaga)">BC-D (Telaga)</option>
                         <option value="BC-D (Balija)">BC-D (Balija)</option>
+                        <option value="BC-D (Ontari)">BC-D (Ontari)</option>
                         <option value="BC-D (Munnuru Kapu)">BC-D (Munnuru Kapu)</option>
                         <option value="BC-D (Kamma)">BC-D (Kamma)</option>
                         <option value="BC-D (Reddy)">BC-D (Reddy)</option>
@@ -413,8 +424,12 @@
                     <optgroup label="BC-E (Muslim BC)">
                         <option value="BC-E (Shaik)">BC-E (Shaik)</option>
                         <option value="BC-E (Syed)">BC-E (Syed)</option>
-                        <option value="BC-E (Qureshi)">BC-E (Qureshi/Butcher)</option>
-                        <option value="BC-E (Ansari)">BC-E (Ansari – weavers)</option>
+                        <option value="BC-E (Moghal)">BC-E (Moghal)</option>
+                        <option value="BC-E (Pathan)">BC-E (Pathan)</option>
+                        <option value="BC-E (Qureshi-Butcher)">BC-E (Qureshi / Butcher)</option>
+                        <option value="BC-E (Labbi)">BC-E (Labbi)</option>
+                        <option value="BC-E (Mehtar-Muslim scavenger)">BC-E (Mehtar / Muslim scavenger)</option>
+                        <option value="BC-E (Ansari – weavers)">BC-E (Ansari – weavers)</option>
                     </optgroup>
 
                     <!-- SC Categories -->
@@ -422,20 +437,45 @@
                         <option value="SC (Madiga)">SC (Madiga)</option>
                         <option value="SC (Mala)">SC (Mala)</option>
                         <option value="SC (Relli)">SC (Relli)</option>
+                        <option value="SC (Dommara-Dombar)">SC (Dommara / Dombar)</option>
+                        <option value="SC (Chakkiliyan-Rajaka)">SC (Chakkiliyan / Rajaka)</option>
+                        <option value="SC (Pakir-Faqir)">SC (Pakir / Faqir)</option>
+                        <option value="SC (Bindla)">SC (Bindla)</option>
+                        <option value="SC (Budaga Jangam)">SC (Budaga Jangam)</option>
+                        <option value="SC (Vamsha Raj)">SC (Vamsha Raj)</option>
+                        <option value="SC (Poosala)">SC (Poosala)</option>
+                        <option value="SC (Valluvan)">SC (Valluvan)</option>
+                        <option value="SC (Boya)">SC (Boya)</option>
+                        <option value="SC (Thoti)">SC (Thoti)</option>
                         <option value="SC (Adi Andhra)">SC (Adi Andhra)</option>
+                        <option value="SC (Adi Dravida)">SC (Adi Dravida)</option>
                         <option value="SC (Arunthathiyar)">SC (Arunthathiyar)</option>
                     </optgroup>
 
                     <!-- ST Categories -->
                     <optgroup label="Scheduled Tribes (ST)">
-                        <option value="ST (Lambada)">ST (Lambada/Banjara)</option>
-                        <option value="ST (Koya)">ST (Koya)</option>
-                        <option value="ST (Yerukala)">ST (Yerukala)</option>
-                        <option value="ST (Chenchu)">ST (Chenchu)</option>
+                        <option value="ST (Lambada_Banjara_Sugali)">ST (Lambada / Banjara / Sugali)</option>
                         <option value="ST (Gond)">ST (Gond)</option>
+                        <option value="ST (Koya)">ST (Koya)</option>
+                        <option value="ST (Chenchu)">ST (Chenchu)</option>
+                        <option value="ST (Yerukala)">ST (Yerukala)</option>
+                        <option value="ST (Yanadi)">ST (Yanadi)</option>
+                        <option value="ST (Konda Reddy)">ST (Konda Reddy)</option>
+                        <option value="ST (Konda Dora)">ST (Konda Dora)</option>
+                        <option value="ST (Savara)">ST (Savara)</option>
+                        <option value="ST (Jatapu)">ST (Jatapu)</option>
+                        <option value="ST (Kammara)">ST (Kammara)</option>
+                        <option value="ST (Valmiki-Boya)">ST (Valmiki / Boya)</option>
+                        <option value="ST (Gadaba)">ST (Gadaba)</option>
+                        <option value="ST (Hill Reddi)">ST (Hill Reddi)</option>
+                        <option value="ST (Kolam)">ST (Kolam)</option>
+                        <option value="ST (Thoti)">ST (Thoti)</option>
+                        <option value="ST (Porja)">ST (Porja)</option>
+                        <option value="ST (Bagata)">ST (Bagata)</option>
+                        <option value="ST (Andh)">ST (Andh)</option>
                     </optgroup>
 
-                    
+
 
                     <!-- Others -->
                     <option value="other">Other Castes</option>
@@ -492,7 +532,7 @@
 
     <script>
         // Base URL for your backend API
-        const API_BASE_URL = 'https://4ddd-2401-4900-889d-8d9e-b4a5-2d10-4a34-b143.ngrok-free.app';
+        const API_BASE_URL = 'https://apimatrimony.lytortech.com';
         console.log('API Base URL:', API_BASE_URL);
 
         // Current profiles data in memory for client-side operations

@@ -4,28 +4,308 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .fixed-email {
+            padding: 0.75rem;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .otp-timer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .success-message {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
         <h1>Admin Login</h1>
         <form id="loginForm">
-            <div class="form-group">
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number" required>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            <div id="successMessage" class="success-message" style="display: none;"></div>
+            
+            <div class="form-group email-group">
+                <label>Email Address</label>
+                <div class="fixed-email" id="fixedEmail">kanil1563484@gmail.com</div>
+                <input type="hidden" id="email" name="email" value="admin@example.com">
             </div>
             
             <div class="form-group otp-group" style="display: none;">
                 <label for="otp">OTP</label>
-                <input type="text" id="otp" name="otp" placeholder="Enter 6-digit OTP" maxlength="6">
-                <p class="otp-timer">OTP valid for: <span id="timer">02:00</span></p>
+                <input type="text" id="otp" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+                <p class="otp-timer">OTP valid for: <span id="timer">05:00</span></p>
             </div>
             
-            <button type="button" id="requestOtpBtn" class="btn">Send OTP</button>
+            <button type="button" id="requestOtpBtn" class="btn">Get OTP</button>
             <button type="submit" id="loginBtn" class="btn" style="display: none;">Login</button>
         </form>
     </div>
     
-    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const email = document.getElementById('email').value; // Fixed email
+            const otpInput = document.getElementById('otp');
+            const requestOtpBtn = document.getElementById('requestOtpBtn');
+            const loginBtn = document.getElementById('loginBtn');
+            const emailGroup = document.querySelector('.email-group');
+            const otpGroup = document.querySelector('.otp-group');
+            const timerDisplay = document.getElementById('timer');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const loginForm = document.getElementById('loginForm');
+            
+            let countdown;
+            let timerSeconds = 300; // 5 minutes in seconds
+            
+            console.log("DOM loaded - elements:", {
+                emailGroup, otpGroup, requestOtpBtn, loginBtn
+            });
+
+            requestOtpBtn.addEventListener('click', function() {
+                console.log("Get OTP button clicked");
+                sendOtpRequest(email);
+            });
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                console.log("Login form submitted");
+                
+                const otp = otpInput.value.trim();
+                
+                if (!otp || otp.length !== 6) {
+                    showError('Please enter a valid 6-digit OTP');
+                    return;
+                }
+                
+                verifyOtp(email, otp);
+            });
+            
+            function sendOtpRequest(email) {
+                console.log("Sending OTP request for email:", email);
+                requestOtpBtn.disabled = true;
+                requestOtpBtn.textContent = 'Sending OTP...';
+                
+                // SIMULATED API CALL - REPLACE WITH ACTUAL FETCH
+                console.log("Simulating API call to https://apimatrimony.lytortech.com/api/profiles/otp_send");
+                setTimeout(() => {
+                    // This is where the OTP fields should appear
+                    console.log("Before showing OTP fields");
+                    emailGroup.style.display = 'none';
+                    otpGroup.style.display = 'block';
+                    requestOtpBtn.style.display = 'none';
+                    loginBtn.style.display = 'block';
+                    console.log("After showing OTP fields - elements:", {
+                        emailGroup, otpGroup, requestOtpBtn, loginBtn
+                    });
+                    
+                    startOtpTimer();
+                    showSuccess('OTP sent to your email');
+                    requestOtpBtn.disabled = false;
+                    requestOtpBtn.textContent = 'Get OTP';
+                    
+                    
+                    fetch('https://apimatrimony.lytortech.com/api/profiles/otp_send', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email: email })
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Failed to send OTP');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.message === "OTP sent to email") {
+                            emailGroup.style.display = 'none';
+                            otpGroup.style.display = 'block';
+                            requestOtpBtn.style.display = 'none';
+                            loginBtn.style.display = 'block';
+                            startOtpTimer();
+                            showSuccess('OTP sent to your email');
+                        } else {
+                            throw new Error(data.message || 'Failed to send OTP');
+                        }
+                    })
+                    .catch(error => {
+                        showError(error.message || 'Failed to send OTP');
+                    })
+                    .finally(() => {
+                        requestOtpBtn.disabled = false;
+                        requestOtpBtn.textContent = 'Get OTP';
+                    });
+                    
+                }, 1000);
+            }
+            
+            function verifyOtp(email, otp) {
+                console.log("Verifying OTP:", otp);
+                loginBtn.disabled = true;
+                loginBtn.textContent = 'Verifying...';
+                
+                // SIMULATED API CALL - REPLACE WITH ACTUAL FETCH
+                console.log("Simulating API call to /api/profiles/otp_verify");
+                setTimeout(() => {
+                    // Simulate successful verification
+                    handleSuccessfulLogin(email);
+                    
+                     
+                    fetch(`https://apimatrimony.lytortech.com/api/profiles/otp_verify?email=${encodeURIComponent(email)}&otp=${otp}`, {
+                        method: 'POST'
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('OTP verification failed');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.message === "OTP verified successfully") {
+                            handleSuccessfulLogin(email);
+                        } else {
+                            showError(data.message || 'OTP verification failed');
+                        }
+                    })
+                    .catch(error => {
+                        showError(error.message || 'Error verifying OTP');
+                    })
+                    .finally(() => {
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = 'Login';
+                    });
+                    
+                }, 1000);
+            }
+            
+            function handleSuccessfulLogin(email) {
+                console.log("Login successful for email:", email);
+                localStorage.setItem('lastLogin', new Date().toISOString());
+                localStorage.setItem('loggedInEmail', email);
+                window.location.href = 'home.html';
+            }
+            
+            function startOtpTimer() {
+                console.log("Starting OTP timer");
+                clearInterval(countdown);
+                timerSeconds = 300;
+                updateTimerDisplay();
+                
+                countdown = setInterval(() => {
+                    timerSeconds--;
+                    updateTimerDisplay();
+                    
+                    if (timerSeconds <= 0) {
+                        clearInterval(countdown);
+                        showError('OTP has expired. Please request a new one.');
+                    }
+                }, 1000);
+            }
+            
+            function updateTimerDisplay() {
+                const minutes = Math.floor(timerSeconds / 60);
+                const seconds = timerSeconds % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            function showError(message) {
+                console.error("Showing error:", message);
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                setTimeout(() => errorMessage.style.display = 'none', 5000);
+            }
+            
+            function showSuccess(message) {
+                console.log("Showing success:", message);
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                setTimeout(() => successMessage.style.display = 'none', 5000);
+            }
+        });
+    </script>
 </body>
 </html>

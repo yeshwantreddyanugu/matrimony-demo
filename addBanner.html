@@ -266,7 +266,7 @@
             }
         });
     
-        // Form submission
+        // Image submission
         document.getElementById('bannerForm').addEventListener('submit', function (e) {
             e.preventDefault();
     
@@ -279,7 +279,7 @@
             const formData = new FormData();
             formData.append('image', fileInput.files[0]); // Key must match backend's @RequestPart("image")
     
-            fetch('https://4ddd-2401-4900-889d-8d9e-b4a5-2d10-4a34-b143.ngrok-free.app/api/profiles/banner', {
+            fetch('https://apimatrimony.lytortech.com/api/profiles/banner', {
                 method: 'POST',
                 body: formData
             })

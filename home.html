@@ -279,7 +279,7 @@
                 }
 
                 // Fetch analytics summary data
-                fetchData('https://4ddd-2401-4900-889d-8d9e-b4a5-2d10-4a34-b143.ngrok-free.app/api/analytics/summary')
+                fetchData('https://apimatrimony.lytortech.com/api/analytics/summary')
                     .then(data => {
                         document.getElementById('totalVisitors').textContent = data.totalVisitors || 0;
                         document.getElementById('totalProfiles').textContent = data.totalProfiles || 0;
@@ -296,7 +296,7 @@
                     });
 
                 // Fetch top profiles data
-                fetchData('https://4ddd-2401-4900-889d-8d9e-b4a5-2d10-4a34-b143.ngrok-free.app/api/analytics/top-profiles')
+                fetchData('https://apimatrimony.lytortech.com/api/analytics/top-profiles')
                     .then(profiles => {
                         const profilesList = document.getElementById('topProfilesList');
                         profilesList.innerHTML = '';
