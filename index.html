@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Admin Login</title>
     <style>
         body {
@@ -15,7 +18,6 @@
             align-items: center;
             height: 100vh;
         }
-        
         .login-container {
             background: white;
             padding: 2rem;
@@ -24,24 +26,20 @@
             width: 100%;
             max-width: 400px;
         }
-        
         h1 {
             text-align: center;
             margin-bottom: 1.5rem;
             color: #333;
         }
-        
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: bold;
             color: #555;
         }
-        
         .fixed-email {
             padding: 0.75rem;
             background-color: #f0f0f0;
@@ -49,7 +47,6 @@
             border-radius: 4px;
             font-size: 1rem;
         }
-        
         input {
             width: 100%;
             padding: 0.75rem;
@@ -58,7 +55,6 @@
             font-size: 1rem;
             box-sizing: border-box;
         }
-        
         .btn {
             width: 100%;
             padding: 0.75rem;
@@ -70,35 +66,75 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        
         .btn:hover {
             background-color: #45a049;
         }
-        
         .btn:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
         }
-        
         .otp-timer {
             text-align: center;
             font-size: 0.9rem;
             color: #666;
             margin-top: 0.5rem;
         }
-        
         .error-message {
             color: #f44336;
             text-align: center;
             margin-bottom: 1rem;
             font-size: 0.9rem;
         }
-        
         .success-message {
             color: #4CAF50;
             text-align: center;
             margin-bottom: 1rem;
             font-size: 0.9rem;
+        }
+        .expired-message {
+            color: #f44336;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .otp-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .otp-input {
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+        .otp-input:focus {
+            outline: 2px solid #4CAF50;
+            border-color: transparent;
+        }
+        .hidden-otp {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .debug-log {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 300px;
+            font-size: 12px;
+            display: none;
         }
     </style>
 </head>
@@ -111,24 +147,35 @@
             
             <div class="form-group email-group">
                 <label>Email Address</label>
-                <div class="fixed-email" id="fixedEmail">kanil1563484@gmail.com</div>
-                <input type="hidden" id="email" name="email" value="admin@example.com">
+                <div class="fixed-email" id="fixedEmail">ksrmatrimony92@gmail.com</div>
+                <input type="hidden" id="email" name="email" value="ksrmatrimony92@gmail.com">
             </div>
             
             <div class="form-group otp-group" style="display: none;">
-                <label for="otp">OTP</label>
-                <input type="text" id="otp" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+                <label for="otp">Enter OTP</label>
+                <div class="otp-container" id="otpContainer">
+                    <input type="text" class="otp-input" maxlength="1" data-index="0">
+                    <input type="text" class="otp-input" maxlength="1" data-index="1">
+                    <input type="text" class="otp-input" maxlength="1" data-index="2">
+                    <input type="text" class="otp-input" maxlength="1" data-index="3">
+                    <input type="text" class="otp-input" maxlength="1" data-index="4">
+                    <input type="text" class="otp-input" maxlength="1" data-index="5">
+                </div>
+                <input type="text" id="otp" name="otp" class="hidden-otp" required>
                 <p class="otp-timer">OTP valid for: <span id="timer">05:00</span></p>
+                <p id="expiredMessage" class="expired-message">OTP has expired. Please request a new one.</p>
             </div>
             
             <button type="button" id="requestOtpBtn" class="btn">Get OTP</button>
             <button type="submit" id="loginBtn" class="btn" style="display: none;">Login</button>
         </form>
     </div>
-    
+
+    <div id="debugLog" class="debug-log"></div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const email = document.getElementById('email').value; // Fixed email
+            const email = document.getElementById('email').value;
             const otpInput = document.getElementById('otp');
             const requestOtpBtn = document.getElementById('requestOtpBtn');
             const loginBtn = document.getElementById('loginBtn');
@@ -137,173 +184,294 @@
             const timerDisplay = document.getElementById('timer');
             const errorMessage = document.getElementById('errorMessage');
             const successMessage = document.getElementById('successMessage');
+            const expiredMessage = document.getElementById('expiredMessage');
             const loginForm = document.getElementById('loginForm');
+            const debugLog = document.getElementById('debugLog');
+            const otpBoxes = document.querySelectorAll('.otp-input');
             
             let countdown;
             let timerSeconds = 300; // 5 minutes in seconds
-            
-            console.log("DOM loaded - elements:", {
-                emailGroup, otpGroup, requestOtpBtn, loginBtn
+            let otpExpired = false;
+
+            // Initialize UI
+            loginBtn.style.display = 'none';
+            debugLog.innerHTML = '<div>Debug log initialized</div>';
+
+            // Check if already logged in
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                window.location.replace('home.html');
+                return;
+            }
+
+            // Clear any existing auth data if coming from logout
+            if (window.location.search.includes('logout')) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('lastLogin');
+                localStorage.removeItem('loggedInEmail');
+                sessionStorage.removeItem('isLoggedIn');
+            }
+
+            // Toggle debug log with Ctrl+Shift+L
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+                    debugLog.style.display = debugLog.style.display === 'none' ? 'block' : 'none';
+                }
             });
 
+            // Set up OTP box navigation
+            otpBoxes.forEach((box, index) => {
+                box.addEventListener('input', (e) => {
+                    const value = e.target.value;
+                    addLog(`OTP box ${index} input: ${value}`);
+
+                    // Auto-focus next box if a digit was entered
+                    if (value.length === 1 && index < otpBoxes.length - 1) {
+                        otpBoxes[index + 1].focus();
+                    }
+
+                    updateCombinedOtp();
+                });
+
+                box.addEventListener('keydown', (e) => {
+                    // Handle backspace to move to previous box
+                    if (e.key === 'Backspace' && index > 0 && !box.value) {
+                        otpBoxes[index - 1].focus();
+                    }
+                });
+            });
+
+            function updateCombinedOtp() {
+                const otp = Array.from(otpBoxes).map(box => box.value).join('');
+                otpInput.value = otp;
+                addLog(`Combined OTP updated: ${otp}`);
+            }
+
             requestOtpBtn.addEventListener('click', function() {
-                console.log("Get OTP button clicked");
+                addLog('Request OTP button clicked');
                 sendOtpRequest(email);
             });
             
             loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                console.log("Login form submitted");
-                
                 const otp = otpInput.value.trim();
-                
-                if (!otp || otp.length !== 6) {
-                    showError('Please enter a valid 6-digit OTP');
+                addLog(`Login form submitted with OTP: ${otp}`);
+
+                if (otpExpired) {
+                    showError('OTP has expired. Please request a new one.');
+                    addLog('OTP expired - preventing submission');
                     return;
                 }
-                
+
+                if (!otp || otp.length !== 6) {
+                    showError('Please enter a valid 6-digit OTP');
+                    addLog('Invalid OTP format');
+                    return;
+                }
+
                 verifyOtp(email, otp);
             });
-            
+
             function sendOtpRequest(email) {
-                console.log("Sending OTP request for email:", email);
+                addLog(`Starting OTP request for email: ${email}`);
+                addLog(`Making request to: https://apimatrimony.lytortech.com/api/profiles/otp_send`);
                 requestOtpBtn.disabled = true;
                 requestOtpBtn.textContent = 'Sending OTP...';
-                
-                // SIMULATED API CALL - REPLACE WITH ACTUAL FETCH
-                console.log("Simulating API call to https://apimatrimony.lytortech.com/api/profiles/otp_send");
-                setTimeout(() => {
-                    // This is where the OTP fields should appear
-                    console.log("Before showing OTP fields");
-                    emailGroup.style.display = 'none';
-                    otpGroup.style.display = 'block';
-                    requestOtpBtn.style.display = 'none';
-                    loginBtn.style.display = 'block';
-                    console.log("After showing OTP fields - elements:", {
-                        emailGroup, otpGroup, requestOtpBtn, loginBtn
-                    });
-                    
-                    startOtpTimer();
-                    showSuccess('OTP sent to your email');
+
+                // Reset OTP expired state
+                otpExpired = false;
+                expiredMessage.style.display = 'none';
+
+                fetch('https://apimatrimony.lytortech.com/api/profiles/otp_send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                })
+                .then(response => {
+                    addLog(`OTP request response status: ${response.status}`);
+                    if (!response.ok) {
+                        addLog('OTP request failed - response not OK');
+                        throw new Error('Failed to send OTP');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    addLog(`OTP request response data: ${JSON.stringify(data)}`);
+                    if (data.message && data.message.toLowerCase().includes('otp sent')) {
+                        addLog('OTP sent successfully - showing OTP form');
+                        // Show OTP form
+                        emailGroup.style.display = 'none';
+                        otpGroup.style.display = 'block';
+                        requestOtpBtn.style.display = 'none';
+                        loginBtn.style.display = 'block';
+
+                        // Clear any existing OTP values
+                        otpBoxes.forEach(box => box.value = '');
+                        otpInput.value = '';
+
+                        // Focus first OTP box
+                        otpBoxes[0].focus();
+
+                        // Start the timer
+                        startOtpTimer();
+                        showSuccess('OTP sent to your email');
+                    } else {
+                        addLog(`Unexpected response message: ${data.message}`);
+                        throw new Error(data.message || 'Failed to send OTP');
+                    }
+                })
+                .catch(error => {
+                    addLog(`Error in OTP request: ${error.message}`);
+                    showError(error.message || 'Failed to send OTP');
+                })
+                .finally(() => {
                     requestOtpBtn.disabled = false;
                     requestOtpBtn.textContent = 'Get OTP';
-                    
-                    
-                    fetch('https://apimatrimony.lytortech.com/api/profiles/otp_send', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ email: email })
-                    })
-                    .then(response => {
-                        if (!response.ok) throw new Error('Failed to send OTP');
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.message === "OTP sent to email") {
-                            emailGroup.style.display = 'none';
-                            otpGroup.style.display = 'block';
-                            requestOtpBtn.style.display = 'none';
-                            loginBtn.style.display = 'block';
-                            startOtpTimer();
-                            showSuccess('OTP sent to your email');
-                        } else {
-                            throw new Error(data.message || 'Failed to send OTP');
-                        }
-                    })
-                    .catch(error => {
-                        showError(error.message || 'Failed to send OTP');
-                    })
-                    .finally(() => {
-                        requestOtpBtn.disabled = false;
-                        requestOtpBtn.textContent = 'Get OTP';
-                    });
-                    
-                }, 1000);
+                    addLog('OTP request process completed');
+                });
             }
-            
+
             function verifyOtp(email, otp) {
-                console.log("Verifying OTP:", otp);
+                addLog(`Starting OTP verification for email: ${email}`);
+                addLog(`Making request to: https://apimatrimony.lytortech.com/api/profiles/otp_verify?email=${encodeURIComponent(email)}&otp=${otp}`);
                 loginBtn.disabled = true;
                 loginBtn.textContent = 'Verifying...';
-                
-                // SIMULATED API CALL - REPLACE WITH ACTUAL FETCH
-                console.log("Simulating API call to /api/profiles/otp_verify");
-                setTimeout(() => {
-                    // Simulate successful verification
-                    handleSuccessfulLogin(email);
-                    
-                     
-                    fetch(`https://apimatrimony.lytortech.com/api/profiles/otp_verify?email=${encodeURIComponent(email)}&otp=${otp}`, {
-                        method: 'POST'
-                    })
-                    .then(response => {
-                        if (!response.ok) throw new Error('OTP verification failed');
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.message === "OTP verified successfully") {
-                            handleSuccessfulLogin(email);
-                        } else {
-                            showError(data.message || 'OTP verification failed');
-                        }
-                    })
-                    .catch(error => {
-                        showError(error.message || 'Error verifying OTP');
-                    })
-                    .finally(() => {
-                        loginBtn.disabled = false;
-                        loginBtn.textContent = 'Login';
-                    });
-                    
-                }, 1000);
+
+                fetch(`https://apimatrimony.lytortech.com/api/profiles/otp_verify?email=${encodeURIComponent(email)}&otp=${otp}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(async (response) => {
+                    addLog(`OTP request response status: ${response.status}`);
+                    const text = await response.text();
+                    addLog(`Raw response text: ${text.slice(0, 200)}...`);
+
+                    if (!response.ok) {
+                        throw new Error(text || 'Failed to verify OTP');
+                    }
+
+                    let data;
+                    try {
+                        data = JSON.parse(text);
+                    } catch (e) {
+                        addLog(`Error parsing JSON: ${e.message}`);
+                        throw new Error("Failed to parse server response.");
+                    }
+
+                    return data;
+                })
+                .then(data => {
+                    addLog(`OTP verification response data: ${JSON.stringify(data)}`);
+
+                    if (data.message === 'OTP verified successfully') {
+                        addLog('OTP verified successfully - handling login');
+                        handleSuccessfulLogin(email);
+                    }
+                    else if (data.message === 'Invalid OTP') {
+                        addLog('Invalid OTP entered');
+                        throw new Error('The OTP you entered is invalid');
+                    }
+                    else if (data.message === 'OTP expired') {
+                        addLog('OTP has expired');
+                        otpExpired = true;
+                        expiredMessage.style.display = 'block';
+                        throw new Error('OTP has expired. Please request a new one.');
+                    }
+                    else if (data.message === 'No OTP found for this email') {
+                        addLog('No OTP found for email');
+                        throw new Error('No OTP found for this email. Please request a new one.');
+                    }
+                    else {
+                        addLog(`Unexpected verification message: ${data.message}`);
+                        throw new Error(data.message || 'OTP verification failed');
+                    }
+                })
+                .catch(error => {
+                    addLog(`Error in OTP verification: ${error.message}`);
+                    showError(error.message || 'Error verifying OTP');
+                })
+                .finally(() => {
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Login';
+                    addLog('OTP verification process completed');
+                });
             }
-            
+
             function handleSuccessfulLogin(email) {
-                console.log("Login successful for email:", email);
+                addLog(`Handling successful login for email: ${email}`);
+                // Set both session and persistent storage
+                sessionStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('lastLogin', new Date().toISOString());
                 localStorage.setItem('loggedInEmail', email);
-                window.location.href = 'home.html';
+                
+                // Prevent back navigation to login page
+                window.history.pushState(null, null, 'home.html');
+                window.onpopstate = function() {
+                    window.history.go(1);
+                };
+                
+                // Redirect to home page
+                window.location.replace('home.html');
             }
-            
+
             function startOtpTimer() {
-                console.log("Starting OTP timer");
+                addLog('Starting OTP timer');
                 clearInterval(countdown);
                 timerSeconds = 300;
                 updateTimerDisplay();
-                
+
                 countdown = setInterval(() => {
                     timerSeconds--;
                     updateTimerDisplay();
-                    
+
                     if (timerSeconds <= 0) {
+                        addLog('OTP timer expired');
                         clearInterval(countdown);
-                        showError('OTP has expired. Please request a new one.');
+                        otpExpired = true;
+                        expiredMessage.style.display = 'block';
                     }
                 }, 1000);
             }
-            
+
             function updateTimerDisplay() {
                 const minutes = Math.floor(timerSeconds / 60);
                 const seconds = timerSeconds % 60;
                 timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }
-            
+
             function showError(message) {
-                console.error("Showing error:", message);
+                addLog(`Showing error: ${message}`);
                 errorMessage.textContent = message;
                 errorMessage.style.display = 'block';
                 successMessage.style.display = 'none';
-                setTimeout(() => errorMessage.style.display = 'none', 5000);
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                    addLog(`Hiding error message after timeout`);
+                }, 5000);
             }
-            
+
             function showSuccess(message) {
-                console.log("Showing success:", message);
+                addLog(`Showing success: ${message}`);
                 successMessage.textContent = message;
                 successMessage.style.display = 'block';
                 errorMessage.style.display = 'none';
-                setTimeout(() => successMessage.style.display = 'none', 5000);
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                    addLog(`Hiding success message after timeout`);
+                }, 5000);
+            }
+
+            function addLog(message) {
+                const timestamp = new Date().toLocaleTimeString();
+                const logEntry = document.createElement('div');
+                logEntry.textContent = `[${timestamp}] ${message}`;
+                debugLog.appendChild(logEntry);
+                debugLog.scrollTop = debugLog.scrollHeight;
+                console.log(`[DEBUG] ${message}`);
             }
         });
     </script>

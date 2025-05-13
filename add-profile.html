@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Add Profile - Admin Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -141,9 +144,11 @@
             <h2>Dashboard</h2>
             <ul>
                 <li><a href="home.html"><i class="fas fa-home"></i><span> Home</span></a></li>
-                <li class="active"><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add Profile</span></a></li>
+                <li class="active"><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add
+                            Profile</span></a></li>
                 <li><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit Profiles</span></a></li>
-                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a></li>
+                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a>
+                </li>
                 <li><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active Users</span></a></li>
                 <!-- <li><a href="settings.html"><i class="fas fa-cog"></i><span> Settings</span></a></li> -->
                 <li><a href="user.html"><i class="fas fa-user-cog"></i><span> Users</span></a></li>
@@ -192,7 +197,8 @@
                                 <option value="BC-A (Kuruba – in some regions)">BC-A (Kuruba – in some regions)</option>
                                 <option value="BC-A (Rajaka – washermen)">BC-A (Rajaka – washermen)</option>
                                 <option value="BC-A (Kamsali – goldsmiths)">BC-A (Kamsali – goldsmiths)</option>
-                                <option value="BC-A (Sagara-Uppara–salt workers)">BC-A (Sagara / Uppara – salt workers)</option>
+                                <option value="BC-A (Sagara-Uppara–salt workers)">BC-A (Sagara / Uppara – salt workers)
+                                </option>
 
                                 <!-- BC-B -->
                                 <option value="BC-B (Patel)">BC-B (Patel)</option>
@@ -201,9 +207,11 @@
                                 <option value="BC-B (Goud – toddy tappers)">BC-B (Goud – toddy tappers)</option>
                                 <option value="BC-B (Gandla)">BC-B (Gandla)</option>
                                 <option value="BC-B (Kuruma – in Telangana)">BC-B (Kuruma – in Telangana)</option>
-                                <option value="BC-B (Koppula Velama – Telangana)">BC-B (Koppula Velama – Telangana) </option>
+                                <option value="BC-B (Koppula Velama – Telangana)">BC-B (Koppula Velama – Telangana)
+                                </option>
                                 <option value="BC-B (Thogata Veera Kshatriya)">BC-B (Thogata Veera Kshatriya)</option>
-                                <option value="BC-B (Are Katikam-Kapu)">BC-B (Are Katikam / Kapu – in some areas)</option>
+                                <option value="BC-B (Are Katikam-Kapu)">BC-B (Are Katikam / Kapu – in some areas)
+                                </option>
 
                                 <!-- BC-C -->
                                 <option value="BC-C (Christian)">BC-C (Christian converts from BC castes)</option>
@@ -890,6 +898,27 @@
         const API_BASE_URL = 'https://apimatrimony.lytortech.com/api/profiles';
 
         document.addEventListener('DOMContentLoaded', function () {
+
+
+
+            // Check authentication status
+            if (sessionStorage.getItem('isLoggedIn') !== 'true' ||
+                localStorage.getItem('isLoggedIn') !== 'true') {
+                window.location.replace('index.html');
+                return;
+            }
+
+            // Prevent back navigation to login page
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function () {
+                window.history.go(1);
+            };
+
+
+
+
+
+
             // DOM Elements
             const form = document.getElementById('matrimonyForm');
             const casteInput = document.getElementById('caste');

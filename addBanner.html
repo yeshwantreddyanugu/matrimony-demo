@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Add Banner - Admin Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -211,7 +214,6 @@
             <li><a href="view-profiles.html"><i class="fas fa-users"></i><span>View/Edit Profiles</span></a></li>
             <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span>Manage Enquiries</span></a></li>
             <li><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active Users</span></a></li>
-            <!-- <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li> -->
             <li><a href="user.html"><i class="fas fa-user-cog"></i><span>Users</span></a></li>
             <li class="active"><a href="addBanner.html"><i class="fa-solid fa-images"></i><span>Add Banner</span></a></li>
             <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span>View Banner</span></a></li>
@@ -248,59 +250,81 @@
     </div>
 
     <script>
-        // Image preview functionality
-        document.getElementById('uploadArea').addEventListener('click', function () {
-            document.getElementById('fileInput').click();
-        });
-    
-        document.getElementById('fileInput').addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                    const preview = document.getElementById('imagePreview');
-                    preview.src = event.target.result;
-                    document.getElementById('previewContainer').style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    
-        // Image submission
-        document.getElementById('bannerForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-    
-            const fileInput = document.getElementById('fileInput');
-            if (!fileInput.files[0]) {
-                alert('Please select an image to upload');
+        // Authentication check and back button prevention
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication status
+            if (sessionStorage.getItem('isLoggedIn') !== 'true' || 
+                localStorage.getItem('isLoggedIn') !== 'true') {
+                window.location.replace('index.html');
                 return;
             }
-    
-            const formData = new FormData();
-            formData.append('image', fileInput.files[0]); // Key must match backend's @RequestPart("image")
-    
-            fetch('https://apimatrimony.lytortech.com/api/profiles/banner', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Upload failed');
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert('Banner uploaded successfully!');
-                document.getElementById('bannerForm').reset();
-                document.getElementById('previewContainer').style.display = 'none';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error uploading banner: ' + error.message);
-            });
+
+            // Prevent back navigation to login page
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function() {
+                window.history.go(1);
+            };
+
+            // Initialize the file upload functionality
+            initFileUpload();
         });
+
+        function initFileUpload() {
+            // Image preview functionality
+            document.getElementById('uploadArea').addEventListener('click', function() {
+                document.getElementById('fileInput').click();
+            });
+
+            document.getElementById('fileInput').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const preview = document.getElementById('imagePreview');
+                        preview.src = event.target.result;
+                        document.getElementById('previewContainer').style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Image submission
+            document.getElementById('bannerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const fileInput = document.getElementById('fileInput');
+                if (!fileInput.files[0]) {
+                    alert('Please select an image to upload');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('image', fileInput.files[0]);
+
+                fetch('https://apimatrimony.lytortech.com/api/profiles/banner', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Upload failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Banner uploaded successfully!');
+                    document.getElementById('bannerForm').reset();
+                    document.getElementById('previewContainer').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error uploading banner: ' + error.message);
+                });
+            });
+        }
     </script>
-    
-    
 </body>
 </html>

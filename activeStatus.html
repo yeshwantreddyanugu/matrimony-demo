@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Active Status - Admin Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,19 +21,19 @@
             --border-radius: 8px;
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f7fa;
             margin: 0;
             padding: 0;
         }
-        
-       
-        
-        
-      
-        
+
+
+
+
+
+
         h1 {
             color: var(--dark-color);
             margin-bottom: 25px;
@@ -38,20 +42,20 @@
             padding-bottom: 15px;
             border-bottom: 2px solid var(--primary-color);
         }
-        
+
         .active-users-container {
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             padding: 25px;
         }
-        
+
         .active-users-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        
+
         .active-users-table th {
             background-color: var(--primary-color);
             color: white;
@@ -59,27 +63,27 @@
             text-align: left;
             font-weight: 500;
         }
-        
+
         .active-users-table td {
             padding: 15px;
             border-bottom: 1px solid #e0e0e0;
         }
-        
+
         .active-users-table tr:last-child td {
             border-bottom: none;
         }
-        
+
         .active-users-table tr:hover {
             background-color: rgba(67, 97, 238, 0.05);
         }
-        
+
         .loading {
             text-align: center;
             padding: 40px;
             color: #7f8c8d;
             font-size: 18px;
         }
-        
+
         .error-message {
             text-align: center;
             padding: 20px;
@@ -89,13 +93,13 @@
             border-radius: var(--border-radius);
             margin-top: 20px;
         }
-        
+
         .empty-state {
             text-align: center;
             padding: 40px;
             color: #7f8c8d;
         }
-        
+
         .empty-state i {
             font-size: 50px;
             color: #bdc3c7;
@@ -103,6 +107,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="dashboard-container">
         <!-- Sidebar -->
@@ -112,32 +117,34 @@
                 <li><a href="home.html"><i class="fas fa-home"></i><span> Home</span></a></li>
                 <li><a href="add-profile.html"><i class="fas fa-user-plus"></i><span> Add Profile</span></a></li>
                 <li><a href="view-profiles.html"><i class="fas fa-users"></i><span> View/Edit Profiles</span></a></li>
-                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a></li>
-                <li class="active"><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active Users</span></a></li>
+                <li><a href="enquiries.html"><i class="fas fa-question-circle"></i><span> Manage Enquiries</span></a>
+                </li>
+                <li class="active"><a href="activeStatus.html"><i class="fas fa-chart-line"></i><span> Active
+                            Users</span></a></li>
                 <li><a href="user.html"><i class="fas fa-user-cog"></i><span> Users</span></a></li>
                 <li><a href="addBanner.html"><i class="fa-solid fa-images"></i><span> Add Banner</span></a></li>
                 <li><a href="viewBanner.html"><i class="fa-brands fa-joget"></i><span> View Banner</span></a></li>
                 <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i><span> Logout</span></a></li>
             </ul>
         </div>
-        
+
         <!-- Main Content -->
         <div class="main-content">
             <div class="active-users-container">
                 <h1>Active Users</h1>
-                
+
                 <div id="loadingIndicator" class="loading">
                     <i class="fas fa-spinner fa-spin"></i> Loading active users...
                 </div>
-                
+
                 <div id="errorMessage" class="error-message" style="display: none;"></div>
-                
+
                 <div id="emptyState" class="empty-state" style="display: none;">
                     <i class="fas fa-user-slash"></i>
                     <h3>No Active Users Found</h3>
                     <p>There are currently no active users in the system.</p>
                 </div>
-                
+
                 <table id="activeUsersTable" class="active-users-table" style="display: none;">
                     <thead>
                         <tr>
@@ -154,94 +161,184 @@
     </div>
 
     <script>
-        const API_BASE_URL = 'https://apimatrimony.lytortech.com';
-        
-        // Enhanced error handling function
-        function showError(message) {
-            document.getElementById('loadingIndicator').style.display = 'none';
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('errorMessage').textContent = message;
-            document.getElementById('activeUsersTable').style.display = 'none';
-            document.getElementById('emptyState').style.display = 'none';
-        }
-        
-        // Fetch active users from backend with better error handling
-        async function fetchActiveUsers() {
-            try {
-                // Show loading state
-                document.getElementById('loadingIndicator').style.display = 'block';
-                document.getElementById('errorMessage').style.display = 'none';
-                document.getElementById('activeUsersTable').style.display = 'none';
-                document.getElementById('emptyState').style.display = 'none';
-                
-                const response = await fetch(`${API_BASE_URL}/api/forms/active`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
-                        'ngrok-skip-browser-warning': 'true' // Bypass ngrok warning
-                    }
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => null);
-                    throw new Error(errorData?.message || `Server returned ${response.status} status`);
-                }
-
-                const data = await response.json();
-                
-                // Check if data is an array and not empty
-                if (!Array.isArray(data)) {
-                    throw new Error('Invalid data format received from server');
-                }
-                
-                return data;
-                
-            } catch (error) {
-                console.error('Error fetching active users:', error);
-                showError(`Failed to load active users: ${error.message}`);
-                return null;
-            }
-        }
-
-        // Render active users in table
-        function renderActiveUsers(users) {
-            const tableBody = document.getElementById('activeUsersTableBody');
-            tableBody.innerHTML = '';
-
-            if (!users || users.length === 0) {
-                document.getElementById('emptyState').style.display = 'block';
-                document.getElementById('activeUsersTable').style.display = 'none';
-                document.getElementById('loadingIndicator').style.display = 'none';
+        // Authentication check and back button prevention
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[ActiveStatus] DOM fully loaded and parsed');
+            
+            // Check authentication status
+            console.log('[Auth] Checking authentication status');
+            if (sessionStorage.getItem('isLoggedIn') !== 'true' ||
+                localStorage.getItem('isLoggedIn') !== 'true') {
+                console.warn('[Auth] User not authenticated - redirecting to login');
+                window.location.replace('index.html');
                 return;
             }
-
-            users.forEach(user => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${user.name || 'N/A'}</td>
-                    <td>${user.number || 'N/A'}</td>
-                    <td>${user.age || 'N/A'}</td>
-                    <td>${user.gender || 'N/A'}</td>
-                `;
-                tableBody.appendChild(row);
+            console.log('[Auth] User authenticated successfully');
+    
+            // Prevent back navigation to login page
+            console.log('[Navigation] Setting up back button prevention');
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function() {
+                console.log('[Navigation] Back button detected - preventing navigation');
+                window.history.go(1);
+            };
+    
+            // Initialize the active users functionality
+            console.log('[Init] Initializing active users functionality');
+            initActiveUsers();
+        });
+    
+        function initActiveUsers() {
+            console.log('[ActiveUsers] Initializing active users module');
+            
+            const API_BASE_URL = 'https://apimatrimony.lytortech.com';
+            
+            // Debug log container setup
+            const debugLogContainer = document.createElement('div');
+            debugLogContainer.style.position = 'fixed';
+            debugLogContainer.style.bottom = '10px';
+            debugLogContainer.style.right = '10px';
+            debugLogContainer.style.width = '300px';
+            debugLogContainer.style.maxHeight = '200px';
+            debugLogContainer.style.overflowY = 'auto';
+            debugLogContainer.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            debugLogContainer.style.color = 'white';
+            debugLogContainer.style.padding = '10px';
+            debugLogContainer.style.borderRadius = '5px';
+            debugLogContainer.style.fontFamily = 'monospace';
+            debugLogContainer.style.fontSize = '12px';
+            debugLogContainer.style.zIndex = '1000';
+            debugLogContainer.style.display = 'none';
+            document.body.appendChild(debugLogContainer);
+    
+            // Toggle debug log with Ctrl+Shift+D
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                    debugLogContainer.style.display = 
+                        debugLogContainer.style.display === 'none' ? 'block' : 'none';
+                }
             });
-
-            document.getElementById('loadingIndicator').style.display = 'none';
-            document.getElementById('activeUsersTable').style.display = 'table';
-            document.getElementById('emptyState').style.display = 'none';
-        }
-
-        // Load and display active users
-        async function loadActiveUsers() {
-            const activeUsers = await fetchActiveUsers();
-            if (activeUsers !== null) {
-                renderActiveUsers(activeUsers);
+    
+            function addLog(message) {
+                const timestamp = new Date().toLocaleTimeString();
+                const logEntry = document.createElement('div');
+                logEntry.textContent = `[${timestamp}] ${message}`;
+                debugLogContainer.appendChild(logEntry);
+                debugLogContainer.scrollTop = debugLogContainer.scrollHeight;
+                console.log(`[DEBUG] ${message}`);
             }
+    
+            // Enhanced error handling function
+            function showError(message) {
+                addLog(`[Error] ${message}`);
+                document.getElementById('loadingIndicator').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = message;
+                document.getElementById('activeUsersTable').style.display = 'none';
+                document.getElementById('emptyState').style.display = 'none';
+            }
+    
+            // Fetch active users from backend with better error handling
+            async function fetchActiveUsers() {
+                try {
+                    addLog('[API] Starting to fetch active users');
+                    
+                    // Show loading state
+                    document.getElementById('loadingIndicator').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    document.getElementById('activeUsersTable').style.display = 'none';
+                    document.getElementById('emptyState').style.display = 'none';
+    
+                    const response = await fetch(`${API_BASE_URL}/api/forms/active`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                            'ngrok-skip-browser-warning': 'true'
+                        }
+                    });
+    
+                    addLog(`[API] Response status: ${response.status}`);
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => null);
+                        const errorMsg = errorData?.message || `Server returned ${response.status} status`;
+                        addLog(`[API Error] ${errorMsg}`);
+                        throw new Error(errorMsg);
+                    }
+    
+                    const data = await response.json();
+                    addLog('[API] Successfully fetched active users data');
+                    addLog(`[API] Received ${data.length} active users`);
+    
+                    // Check if data is an array and not empty
+                    if (!Array.isArray(data)) {
+                        const errorMsg = 'Invalid data format received from server';
+                        addLog(`[Data Error] ${errorMsg}`);
+                        throw new Error(errorMsg);
+                    }
+    
+                    return data;
+    
+                } catch (error) {
+                    addLog(`[Fetch Error] ${error.message}`);
+                    showError(`Failed to load active users: ${error.message}`);
+                    return null;
+                }
+            }
+    
+            // Render active users in table
+            function renderActiveUsers(users) {
+                addLog('[Render] Starting to render active users');
+                
+                const tableBody = document.getElementById('activeUsersTableBody');
+                tableBody.innerHTML = '';
+    
+                if (!users || users.length === 0) {
+                    addLog('[Render] No active users found - showing empty state');
+                    document.getElementById('emptyState').style.display = 'block';
+                    document.getElementById('activeUsersTable').style.display = 'none';
+                    document.getElementById('loadingIndicator').style.display = 'none';
+                    return;
+                }
+    
+                addLog(`[Render] Rendering ${users.length} active users`);
+                
+                users.forEach((user, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.name || 'N/A'}</td>
+                        <td>${user.number || 'N/A'}</td>
+                        <td>${user.age || 'N/A'}</td>
+                        <td>${user.gender || 'N/A'}</td>
+                    `;
+                    tableBody.appendChild(row);
+                    if (index < 3) { // Log first few users for debugging
+                        addLog(`[Render] User ${index+1}: ${user.name || 'N/A'}`);
+                    }
+                });
+    
+                document.getElementById('loadingIndicator').style.display = 'none';
+                document.getElementById('activeUsersTable').style.display = 'table';
+                document.getElementById('emptyState').style.display = 'none';
+                
+                addLog('[Render] Active users rendered successfully');
+            }
+    
+            // Load and display active users
+            async function loadActiveUsers() {
+                addLog('[Load] Starting to load active users');
+                const activeUsers = await fetchActiveUsers();
+                if (activeUsers !== null) {
+                    renderActiveUsers(activeUsers);
+                }
+                addLog('[Load] Active users loading completed');
+            }
+    
+            // Initialize on page load
+            loadActiveUsers();
         }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', loadActiveUsers);
     </script>
 </body>
+
 </html>

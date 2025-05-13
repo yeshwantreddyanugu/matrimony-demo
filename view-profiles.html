@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>View Profiles - Admin Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -531,6 +534,37 @@
     </div>
 
     <script>
+
+         // Authentication check and back button prevention
+         document.addEventListener('DOMContentLoaded', function() {
+            
+            
+            // Check authentication status
+            console.log('[Auth] Checking authentication status');
+            if (sessionStorage.getItem('isLoggedIn') !== 'true' || 
+                localStorage.getItem('isLoggedIn') !== 'true') {
+                console.warn('[Auth] User not authenticated - redirecting to login');
+                window.location.replace('index.html');
+                return;
+            }
+            console.log('[Auth] User authenticated successfully');
+    
+            // Prevent back navigation to login page
+            console.log('[Navigation] Setting up back button prevention');
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function() {
+                console.log('[Navigation] Back button detected - preventing navigation');
+                window.history.go(1);
+            };
+    
+            
+           
+            
+        });
+    
+
+
+
         // Base URL for your backend API
         const API_BASE_URL = 'https://apimatrimony.lytortech.com';
         console.log('API Base URL:', API_BASE_URL);
@@ -830,12 +864,16 @@
                 <div class="detail-value">${profile.zodiac || 'N/A'}</div>
             </div>
             <div class="detail-group">
-                <div class="detail-label">Native Place</div>
-                <div class="detail-value">${profile.nativePlace || 'N/A'}</div>
+                <div class="detail-label">Native Place/ Current Residence</div>
+                <div class="detail-value">${profile.address || 'N/A'}</div>
             </div>
             <div class="detail-group">
-                <div class="detail-label">Current Residence</div>
-                <div class="detail-value">${profile.currentResidence || 'N/A'}</div>
+                <div class="detail-label">District</div>
+                <div class="detail-value">${profile.district || 'N/A'}</div>
+            </div>
+            <div class="detail-group">
+                <div class="detail-label">State</div>
+                <div class="detail-value">${profile.state || 'N/A'}</div>
             </div>
         </div>
     `;
