@@ -117,6 +117,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Caste</th>
                         <th>Number</th>
                         <th>Age</th>
                         <th>Gender</th>
@@ -281,6 +282,7 @@
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${form.name || 'N/A'}</td>
+                        <td>${form.caste || 'N/A'}</td>
                         <td>${form.number || 'N/A'}</td>
                         <td>${form.age || 'N/A'}</td>
                         <td>${form.gender || 'N/A'}</td>
