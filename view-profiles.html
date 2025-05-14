@@ -644,7 +644,7 @@
         }
 
         // Main function to load and display profiles
-        async function loadProfiles(caste = 'OC') {
+        async function loadProfiles(caste ) {
             console.log('Loading profiles...');
             try {
                 const profiles = caste === 'all' ? await fetchAllProfiles() : await fetchProfiles(caste);
@@ -686,7 +686,7 @@
                         '<span class="status-badge status-inactive">Groom</span>'}
                     </td>
                     <td>${profile.relationship || 'N/A'}</td>
-                    <td>${profile.currentResidence || profile.nativePlace || 'N/A'}</td>
+                    <td>${profile.district  || 'N/A'}</td>
                     <td>${profile.caste || 'N/A'}</td>
                     <td>
                         <div class="action-buttons">
