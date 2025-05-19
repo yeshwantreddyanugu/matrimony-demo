@@ -201,7 +201,7 @@
                                 <option value="Padmashali">Padmashali</option>
                                 <option value="Perika">Perika</option>
                                 <option value="Rajaka">Rajaka</option>
-                                <option value="oc">Reddy</option>
+                                <option value="Reddy">Reddy</option>
                                 <option value="Velama">Velama</option>
                                 <option value="Yadav-Golla">Yadav / Golla</option>
                                 <option value="Muslim">Muslim</option>
@@ -909,7 +909,7 @@
 
             // Handle caste selection change
             function handleCasteChange() {
-                const isOC = this.value.toLowerCase() === 'oc';
+                const isOC = this.value.toLowerCase() === 'reddy';
                 tribeSelect.disabled = !isOC;
                 if (!isOC) tribeSelect.selectedIndex = -1;
             }

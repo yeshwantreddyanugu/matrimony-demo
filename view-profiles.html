@@ -286,7 +286,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            object-fit: cover;
+            object-fit: contain;
             border: 3px solid #3498db;
             margin: 0 auto;
         }
@@ -375,8 +375,9 @@
                 <label for="casteFilter">Filter by Caste:</label>
                 <select id="casteFilter">
                     
+                    
 
-                    <option value="oc">Reddy</option>
+                    <option value="Reddy">Reddy</option>
                     <option value="Besta – Fishermen">Besta – Fishermen</option>
                     <option value="Goud">Goud</option>
                     <option value="Kurma">Kurma</option>
@@ -509,7 +510,7 @@
 
 
         // Function to fetch profiles from backend
-        async function fetchProfiles(caste = 'oc') {
+        async function fetchProfiles(caste = 'Reddy') {
             console.log('Starting to fetch profiles...');
             showLoading();
             try {
