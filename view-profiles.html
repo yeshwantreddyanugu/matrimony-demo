@@ -710,7 +710,7 @@
 
             detailsContainer.innerHTML = `
         <div class="profile-photo-container">
-            <img src="${profile.imageUrl || 'https://via.placeholder.com/150'}" 
+            <img src="${profile.imageUrl }" 
                  alt="Profile Photo" class="profile-photo">
         </div>
         <div class="profile-section">
@@ -733,25 +733,7 @@
             </div>
         </div>
 
-        <div class="profile-section">
-            <h3>Family Information</h3>
-            <div class="detail-group">
-                <div class="detail-label">Father's Name</div>
-                <div class="detail-value">${profile.fatherName || 'N/A'} (${profile.fatherOccupation || 'N/A'})</div>
-            </div>
-            <div class="detail-group">
-                <div class="detail-label">Mother's Name</div>
-                <div class="detail-value">${profile.motherName || 'N/A'} (${profile.motherOccupation || 'N/A'})</div>
-            </div>
-            <div class="detail-group">
-                <div class="detail-label">Brothers</div>
-                <div class="detail-value">${profile.brothersInfo !== "null" ? profile.brothersInfo : 'N/A'}</div>
-            </div>
-            <div class="detail-group">
-                <div class="detail-label">Sisters</div>
-                <div class="detail-value">${profile.sistersInfo !== "null" ? profile.sistersInfo : 'N/A'}</div>
-            </div>
-        </div>
+        
 
         <div class="profile-section">
             <h3>Education & Career</h3>
@@ -767,10 +749,7 @@
                 <div class="detail-label">Monthly Income</div>
                 <div class="detail-value">${profile.monthlyIncome || 'N/A'}</div>
             </div>
-            <div class="detail-group">
-                <div class="detail-label">Assets</div>
-                <div class="detail-value">${profile.assets !== "NA" ? profile.assets : 'N/A'}</div>
-            </div>
+           
         </div>
 
         <div class="profile-section">
@@ -783,18 +762,8 @@
                 <div class="detail-label">Tribe</div>
                 <div class="detail-value">${profile.tribe || 'N/A'}</div>
             </div>
-            <div class="detail-group">
-                <div class="detail-label">Star</div>
-                <div class="detail-value">${profile.star || 'N/A'}</div>
-            </div>
-            <div class="detail-group">
-                <div class="detail-label">Zodiac</div>
-                <div class="detail-value">${profile.zodiac || 'N/A'}</div>
-            </div>
-            <div class="detail-group">
-                <div class="detail-label">Native Place/ Current Residence</div>
-                <div class="detail-value">${profile.address || 'N/A'}</div>
-            </div>
+            
+           
             <div class="detail-group">
                 <div class="detail-label">District</div>
                 <div class="detail-value">${profile.district || 'N/A'}</div>
