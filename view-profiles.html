@@ -600,6 +600,7 @@
                     profile.tribe,
                     profile.fatherName,
                     profile.motherName,
+                    profile.district,
                     profile.education,
                     profile.occupation
                 ].map(field => field ? field.toString().toLowerCase() : '').join(' ');
@@ -729,7 +730,11 @@
             </div>
             <div class="detail-group">
                 <div class="detail-label">Height</div>
-                <div class="detail-value">${profile.height || 'N/A'} cm</div>
+                <div class="detail-value">${profile.height || 'N/A'} ft</div>
+            </div>
+             <div class="detail-group">
+                <div class="detail-label">Marriage Type</div>
+                <div class="detail-value">${profile.zodiac || 'N/A'} </div>
             </div>
         </div>
 

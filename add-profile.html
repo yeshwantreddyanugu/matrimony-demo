@@ -456,6 +456,17 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="zodiac">💍 Marriage Type</label>
+                            <select id="zodiac" name="zodiac">
+                                <option value="">-- Select Marriage type --</option>
+                                <option value="First Marriage">First Marriage</option>
+                                <option value="Second Marriage">Second Marriage</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+
                     </div>
 
 
@@ -509,7 +520,7 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="education">🎓Education: <span style="color: red;">*</span></label>
+                            <label for="education">🎓 Education: <span style="color: red;">*</span></label>
                             <select id="education" name="education" required>
                                 <option value="">-- Select Education --</option>
                                 <option value="No Formal Education">No Formal Education</option>
@@ -522,25 +533,50 @@
                                 <option value="BBA/BBM">BBA / BBM</option>
                                 <option value="BCA">BCA</option>
                                 <option value="LLB">LLB</option>
-                                <option value="MBBS/BDS/BAMS/BHMS">MBBS / BDS / BAMS / BHMS</option>
-                                <option value="Nursing">Nursing</option>
-                                <option value="B.Ed/D.Ed">B.Ed / D.Ed</option>
-                                <option value="CA/ICWA/CS">CA / ICWA / CS</option>
-                                <option value="BFA">Bachelor of Fine Arts (BFA)</option>
-                                <option value="BHM">Bachelor of Hotel Management (BHM)</option>
-                                <option value="Other Bachelor's Degree">Other Bachelor's Degree</option>
+
+                                <!-- Medical & Healthcare (Expanded) -->
+                                <option value="MBBS">MBBS – Bachelor of Medicine & Bachelor of Surgery</option>
+                                <option value="BDS">BDS – Bachelor of Dental Surgery</option>
+                                <option value="BAMS">BAMS – Bachelor of Ayurvedic Medicine & Surgery</option>
+                                <option value="BHMS">BHMS – Bachelor of Homeopathic Medicine & Surgery</option>
+                                <option value="BUMS">BUMS – Bachelor of Unani Medicine & Surgery</option>
+                                <option value="BSMS">BSMS – Bachelor of Siddha Medicine & Surgery</option>
+                                <option value="BNYS">BNYS – Bachelor of Naturopathy & Yogic Sciences</option>
+                                <option value="BPT">BPT – Bachelor of Physiotherapy</option>
+                                <option value="B.Sc Nursing">B.Sc Nursing</option>
+                                <option value="GNM">GNM – General Nursing & Midwifery</option>
+                                <option value="ANM">ANM – Auxiliary Nursing & Midwifery</option>
+                                <option value="BPH">BPH – Bachelor of Public Health</option>
+
+                                <!-- Dental/Pharmacy/Nutrition -->
+                                <option value="B.Pharm">B.Pharm – Bachelor of Pharmacy</option>
+                                <option value="D.Pharm">D.Pharm – Diploma in Pharmacy</option>
+                                <option value="B.Sc Nutrition & Dietetics">B.Sc Nutrition & Dietetics</option>
+
+                                <!-- Postgraduate (Doctors & Specializations) -->
+                                <option value="MD">MD – Doctor of Medicine</option>
+                                <option value="MS">MS – Master of Surgery</option>
+                                <option value="MDS">MDS – Master of Dental Surgery</option>
+                                <option value="DM">DM – Doctorate of Medicine (Super Specialty)</option>
+                                <option value="MCh">MCh – Master of Chirurgiae (Super Specialty Surgery)</option>
+                                <option value="DNB">DNB – Diplomate of National Board</option>
+
+                                <option value="Other Medical Degrees">Other Medical Degrees</option>
+
+                                <!-- General Higher Education -->
                                 <option value="Master’s Degree">Master’s Degree – MA / MSc / MCom</option>
                                 <option value="M.Tech/ME">M.Tech / ME</option>
                                 <option value="MBA/PGDM">MBA / PGDM</option>
                                 <option value="MCA">MCA</option>
                                 <option value="M.Ed">M.Ed</option>
                                 <option value="LLM">LLM</option>
-                                <option value="MD/MS/MDS">MD / MS / MDS</option>
                                 <option value="Ph.D/Doctorate">Ph.D / Doctorate</option>
+
                                 <option value="Preparing for Govt. Exams">Preparing for Govt. Exams</option>
                                 <option value="Other/Not Mentioned">Other / Not Mentioned</option>
                             </select>
                         </div>
+
 
 
                         <div class="form-group">
@@ -1035,7 +1071,7 @@
                 setTimeout(() => {
                     window.location.href = 'view-profiles.html';
                 }, 2000);
-                
+
             }
 
             // Initialize the form
